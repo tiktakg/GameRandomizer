@@ -44,19 +44,20 @@ namespace GameRandomizer
 
             FontInfo.ApplyFont(MainTabItem, Tools.GetFont());
             HeadLineText.FontSize += 10d;
-            HeadLineText.Text = Tools.GetHeadLineText();
+            HeadLineText.Text = Tools.GetHeadLineText("Заголовок");
           
 
             PhrasesTextBlock.FontSize += 5d;
 
-            StartRandomButton.Content = Tools.GetStartButtonText();
-            ButtonSettings.Text = Tools.GetStartButtonText();
+          
+            StartRandomButton.Content = Tools.GetHeadLineText("КнопкаНачала");
+            ButtonSettings.Text = Tools.GetHeadLineText("КнопкаНачала");
 
-            SlowRButton.Content = Tools.GetSlowButtonText();
-            FastRButton.Content = Tools.GetFastButtonText();
+            SlowRButton.Content = Tools.GetHeadLineText("МедленнаяКнопка");
+            FastRButton.Content = Tools.GetHeadLineText("БыстраяКнопка");
 
-            ModeSettings1.Text = Tools.GetSlowButtonText();
-            ModeSettings2.Text = Tools.GetFastButtonText();
+            ModeSettings1.Text = Tools.GetHeadLineText("МедленнаяКнопка");
+            ModeSettings2.Text = Tools.GetHeadLineText("БыстраяКнопка");
 
             LimitInSeconds = Tools.GetTimeLimit();
 
@@ -176,8 +177,6 @@ namespace GameRandomizer
         {
             InitializeComponent();
         }
-
-      
         private void SaveHead_Click(object sender, RoutedEventArgs e)
         {
             string[] allText = File.ReadAllLines(Sources.ElementTexts());
@@ -217,6 +216,24 @@ namespace GameRandomizer
         }
 
         private void SaveGame_Click(object sender, RoutedEventArgs e)
+        {
+            Regex regex = new Regex(@"(.*)\{(.*)\}");
+
+            string textForGame = SaveTextForGame.Text;
+
+            if (textForGame != "")
+            {
+                if(regex.IsMatch(textForGame)) 
+                {
+                    File.AppendAllText(Sources.Games(), "\n" + textForGame);
+                }
+            
+            }
+
+            SaveTextForGame.Text = "";
+        }
+
+        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
         }

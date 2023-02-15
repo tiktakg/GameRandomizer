@@ -93,37 +93,11 @@ namespace GameRandomizer
             */
             return fi;
         }
-        public static string GetHeadLineText()
+        public static string GetHeadLineText(string text)
         {
             return new Regex(@"(.*)\:(.*)")
                 .Match(File.ReadAllLines(Sources.ElementTexts())
-                .Single(x => x.StartsWith("Заголовок")))
-                .Groups[2]
-                .Value
-                .Trim();
-        }
-        public static string GetFastButtonText()
-        {
-            return new Regex(@"(.*)\:(.*)")
-                .Match(File.ReadAllLines(Sources.ElementTexts())
-                .Single(x => x.StartsWith("БыстраяКнопка")))
-                .Groups[2]
-                .Value
-                .Trim();
-        }
-        public static string GetSlowButtonText()
-        {
-            return new Regex(@"(.*)\:(.*)")
-                .Match(File.ReadAllLines(Sources.ElementTexts())
-                .Single(x => x.StartsWith("МедленнаяКнопка")))
-                .Groups[2]
-                .Value
-                .Trim();
-        }
-        public static string GetStartButtonText()
-        {
-            return new Regex(@"(.*)\:(.*)")
-                .Match(File.ReadAllLines(Sources.ElementTexts()).Single(x => x.StartsWith("КнопкаНачала")))
+                .Single(x => x.StartsWith(text)))
                 .Groups[2]
                 .Value
                 .Trim();
