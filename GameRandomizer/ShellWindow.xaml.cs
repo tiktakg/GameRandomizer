@@ -20,9 +20,6 @@ using ModernWpf.Controls;
 
 namespace GameRandomizer
 {
-    /// <summary>
-    /// Interaction logic for ShellWindow.xaml
-    /// </summary>
     public partial class ShellWindow : Window
     {
         private DispatcherTimer Timer;
@@ -36,7 +33,7 @@ namespace GameRandomizer
         }
 
         private void SettingComponents()
-        { 
+        {
             ToggleRolfButton.Checked += (s, e) => MainTabItem.Header = "Random Gay";
             ToggleRolfButton.Unchecked += (s, e) => MainTabItem.Header = "Random Game";
 
@@ -48,7 +45,7 @@ namespace GameRandomizer
             FontInfo.ApplyFont(MainTabItem, Tools.GetFont());
             HeadLineText.FontSize += 10d;
             HeadLineText.Text = Tools.GetHeadLineText();
-            HeadLineSettings.Text = Tools.GetHeadLineText();
+          
 
             PhrasesTextBlock.FontSize += 5d;
 
@@ -144,6 +141,16 @@ namespace GameRandomizer
             Counter++;
             UpdateWaitTextBlock();
             UpdateProgressControls();
+            UpdatePhrases();
+        }
+
+        private void UpdatePhrases()
+        {
+            Random rnd = new Random();
+
+            string[] textforPhrases = File.ReadAllLines(Sources.Phrases());
+            PhrasesTextBlock.Text = textforPhrases[rnd.NextInt64(0, textforPhrases.Length)];
+
         }
         private void LogoClick1(object? sender, EventArgs e)
         {
@@ -156,19 +163,62 @@ namespace GameRandomizer
 
             if (result == true)
             {
-                
-                
+
                 File.Delete(Directory.GetCurrentDirectory() + @"\Sources\Images\MainLogo.png");
                 File.Copy(dialog.FileName, Directory.GetCurrentDirectory() + @"\Sources\Images\MainLogo.png");
                 InvalidateVisual();
                 SettingComponents();
 
             }
-            
+
         }
         private void ApplySettings(object? sender, EventArgs e)
         {
             InitializeComponent();
+        }
+
+      
+        private void SaveHead_Click(object sender, RoutedEventArgs e)
+        {
+            string[] allText = File.ReadAllLines(Sources.ElementTexts());
+            string textForHead = SaveTextForHead.Text;
+
+            if (textForHead != "")
+                SaveTextForHead.Text = "";
+
+
+            HeadLineText.Text = textForHead;
+
+            File.WriteAllText(Sources.ElementTexts(), "");
+
+            for (int i = 0; i < allText.Length; ++i)
+            {
+
+                if (allText[i].StartsWith("Заголовок:"))
+                {
+                    allText[i] = "Заголовок:" + textForHead;
+                    break;
+                }
+            }
+
+            for (int i = 0; i < allText.Length; ++i)
+            {
+                File.AppendAllText(Sources.ElementTexts(), allText[i] + "\n");
+            }
+        }
+
+        private void SavePhrases_Click(object sender, RoutedEventArgs e)
+        {
+            string textForPhrases = SaveTextForPhrases.Text;
+            if (textForPhrases != "")
+                File.AppendAllText(Sources.Phrases(), "\n" + textForPhrases);
+
+            SaveTextForPhrases.Text = "";
+        }
+
+        private void SaveGame_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
