@@ -213,8 +213,8 @@
                         <Grid Width="250" Height="50" Margin="10">
                             <Label Content="Текст режимов" HorizontalAlignment="Right" VerticalAlignment="Center"/>
                             <ComboBox Width="150" VerticalAlignment="Center" SelectionChanged="ComboBox_SelectionChanged">
-                                <TextBox Name="ModeSettings1"  Width="150" Height="25" HorizontalAlignment="Left"/>
-                                <TextBox Name="ModeSettings2"  Width="150" Height="25" HorizontalAlignment="Left"/>
+                                <TextBox Name="fastMode"  Width="150" Height="25" HorizontalAlignment="Left"/>
+                                <TextBox Name="slowMode"  Width="150" Height="25" HorizontalAlignment="Left"/>
                             </ComboBox>
                         </Grid>
                         <Grid Width="200" Height="50"  Margin="10">
@@ -246,7 +246,7 @@
                         <Grid Width="550" Height="50" Margin="10">
                             <Label Content="Заголовок" HorizontalAlignment="Left" VerticalAlignment="Center"/>
                             <TextBox Name="SaveTextForHead" Width="300" Height="25" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                            <Button Content="Сохранить" Margin="10" HorizontalAlignment="Right" VerticalAlignment="Top" Click="SaveHead_Click"/>
+                            <Button  Content="Сохранить" Margin="10" HorizontalAlignment="Right" VerticalAlignment="Top" Click="SaveHead_Click"/>
                         </Grid>
                         <Grid Width="550" Height="50" Margin="10">
                             <Label Content="Добавление игры" HorizontalAlignment="Left" VerticalAlignment="Center"/>

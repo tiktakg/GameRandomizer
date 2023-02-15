@@ -56,8 +56,6 @@ namespace GameRandomizer
             SlowRButton.Content = Tools.GetHeadLineText("МедленнаяКнопка");
             FastRButton.Content = Tools.GetHeadLineText("БыстраяКнопка");
 
-            ModeSettings1.Text = Tools.GetHeadLineText("МедленнаяКнопка");
-            ModeSettings2.Text = Tools.GetHeadLineText("БыстраяКнопка");
 
             LimitInSeconds = Tools.GetTimeLimit();
 
@@ -171,7 +169,6 @@ namespace GameRandomizer
                 SettingComponents();
 
             }
-
         }
         private void ApplySettings(object? sender, EventArgs e)
         {
@@ -183,29 +180,29 @@ namespace GameRandomizer
             string textForHead = SaveTextForHead.Text;
 
             if (textForHead != "")
-                SaveTextForHead.Text = "";
-
-
-            HeadLineText.Text = textForHead;
-
-            File.WriteAllText(Sources.ElementTexts(), "");
-
-            for (int i = 0; i < allText.Length; ++i)
             {
+                HeadLineText.Text = textForHead;
 
-                if (allText[i].StartsWith("Заголовок:"))
+                File.WriteAllText(Sources.ElementTexts(), "");
+
+                for (int i = 0; i < allText.Length; ++i)
                 {
-                    allText[i] = "Заголовок:" + textForHead;
-                    break;
+
+                    if (allText[i].StartsWith("Заголовок:"))
+                    {
+                        allText[i] = "Заголовок:" + textForHead;
+                        break;
+                    }
+                }
+
+                for (int i = 0; i < allText.Length; ++i)
+                {
+                    File.AppendAllText(Sources.ElementTexts(), allText[i] + "\n");
                 }
             }
-
-            for (int i = 0; i < allText.Length; ++i)
-            {
-                File.AppendAllText(Sources.ElementTexts(), allText[i] + "\n");
-            }
+            
+            SaveTextForHead.Text = "";
         }
-
         private void SavePhrases_Click(object sender, RoutedEventArgs e)
         {
             string textForPhrases = SaveTextForPhrases.Text;
@@ -214,7 +211,6 @@ namespace GameRandomizer
 
             SaveTextForPhrases.Text = "";
         }
-
         private void SaveGame_Click(object sender, RoutedEventArgs e)
         {
             Regex regex = new Regex(@"(.*)\{(.*)\}");
@@ -227,14 +223,49 @@ namespace GameRandomizer
                 {
                     File.AppendAllText(Sources.Games(), "\n" + textForGame);
                 }
-            
             }
 
             SaveTextForGame.Text = "";
         }
-
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            string[] allText = File.ReadAllLines(Sources.ElementTexts());
+
+            string fastModeText = fastMode.Text;
+            string slowModeText = slowMode.Text;
+
+
+            if ((slowModeText != "") & (fastModeText != ""))
+            {
+                FastRButton.Content = fastModeText;
+                SlowRButton.Content = slowModeText;
+
+
+                File.WriteAllText(Sources.ElementTexts(), "");
+
+                for (int i = 0; i < allText.Length; ++i)
+                {
+
+                    if (allText[i].StartsWith("БыстраяКнопка:"))
+                    {
+                        allText[i] = "БыстраяКнопка:" + fastModeText;
+                       
+                    }
+
+                    if (allText[i].StartsWith("МедленнаяКнопка:"))
+                    {
+                        allText[i] = "МедленнаяКнопка:" + slowModeText;
+                       
+                    }
+                }
+
+                File.WriteAllText(Sources.ElementTexts(), "");
+
+                for (int i = 0; i < allText.Length; ++i)
+                {
+                    File.AppendAllText(Sources.ElementTexts(), allText[i] + "\n");
+                }
+            }
 
         }
     }
