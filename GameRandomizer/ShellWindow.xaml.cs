@@ -17,6 +17,7 @@ using System.Windows.Threading;
 using WpfColorFontDialog;
 using System.IO;
 using ModernWpf.Controls;
+using System.Printing;
 
 namespace GameRandomizer
 {
@@ -45,7 +46,8 @@ namespace GameRandomizer
             FontInfo.ApplyFont(MainTabItem, Tools.GetFont());
             HeadLineText.FontSize += 10d;
             HeadLineText.Text = Tools.GetHeadLineText("Заголовок");
-          
+
+            SaveFontSize.Text = Convert.ToString(Tools.GetFontSize());
 
             PhrasesTextBlock.FontSize += 5d;
 
@@ -174,58 +176,132 @@ namespace GameRandomizer
         {
             InitializeComponent();
         }
-        private void SaveHead_Click(object sender, RoutedEventArgs e)
+        private void SaveHead_Click(object sender, KeyEventArgs e)
         {
-            string[] allText = File.ReadAllLines(Sources.ElementTexts());
-            string textForHead = SaveTextForHead.Text;
-
-            if (textForHead != "")
+            if(e.Key ==Key.Enter) 
             {
-                HeadLineText.Text = textForHead;
+                string[] allText = File.ReadAllLines(Sources.ElementTexts());
+                string textForHead = SaveTextForHead.Text;
 
-                File.WriteAllText(Sources.ElementTexts(), "");
-
-                for (int i = 0; i < allText.Length; ++i)
+                if (textForHead != "")
                 {
+                    HeadLineText.Text = textForHead;
 
-                    if (allText[i].StartsWith("Заголовок:"))
+                    File.WriteAllText(Sources.ElementTexts(), "");
+
+                    for (int i = 0; i < allText.Length; ++i)
                     {
-                        allText[i] = "Заголовок:" + textForHead;
-                        break;
+
+                        if (allText[i].StartsWith("Заголовок:"))
+                        {
+                            allText[i] = "Заголовок:" + textForHead;
+                            break;
+                        }
+                    }
+
+                    for (int i = 0; i < allText.Length; ++i)
+                    {
+                        File.AppendAllText(Sources.ElementTexts(), allText[i] + "\n");
                     }
                 }
 
-                for (int i = 0; i < allText.Length; ++i)
+                SaveTextForHead.Text = "";
+            }
+        }
+
+        private void SavePhrases_Click(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                string textForPhrases = SaveTextForPhrases.Text;
+                if (textForPhrases != "")
+                    File.AppendAllText(Sources.Phrases(), "\n" + textForPhrases);
+
+                SaveTextForPhrases.Text = "";
+            }
+                
+        }
+        private void SaveGame_Click(object sender, KeyEventArgs e)
+        {
+            if(e.Key == Key.Enter) 
+            {
+
+                Regex regex = new Regex(@"(.*)\{(.*)\}");
+
+                string textForGame = SaveTextForGame.Text;
+
+                if (textForGame != "")
                 {
-                    File.AppendAllText(Sources.ElementTexts(), allText[i] + "\n");
+                    if (regex.IsMatch(textForGame))
+                    {
+                        File.AppendAllText(Sources.Games(), "\n" + textForGame);
+                    }
+                }
+
+                SaveTextForGame.Text = "";
+
+            }
+        }
+        private void SaveFontSize_Click(object sender, KeyEventArgs e) 
+        {
+            
+
+            if (e.Key== Key.Enter && Int32.TryParse(SaveFontSize.Text,out int t))
+            {
+                string[] allText = File.ReadAllLines(Sources.Font());
+                string textForHead = SaveFontSize.Text;
+
+                if (t > 0 && t <= 64)
+                {
+                    File.WriteAllText(Sources.Font(), "");
+
+                    for (int i = 0; i < allText.Length; ++i)
+                    {
+                        if (allText[i].StartsWith("Size:"))
+                        {
+                            allText[i] = "Size:" + textForHead;
+                            break;
+                        }
+                    }
+
+                    for (int i = 0; i < allText.Length; ++i)
+                    {
+                        File.AppendAllText(Sources.Font(), allText[i] + "\n");
+                    }
+
+                    InitializeComponent();
+                    SettingComponents();
                 }
             }
             
-            SaveTextForHead.Text = "";
         }
-        private void SavePhrases_Click(object sender, RoutedEventArgs e)
+        private void ChangeFontColor_Click(object? sender, EventArgs e)
         {
-            string textForPhrases = SaveTextForPhrases.Text;
-            if (textForPhrases != "")
-                File.AppendAllText(Sources.Phrases(), "\n" + textForPhrases);
+            string[] allText = File.ReadAllLines(Sources.Font());
+            string textForHead = SaveFontSize.Text;
 
-            SaveTextForPhrases.Text = "";
-        }
-        private void SaveGame_Click(object sender, RoutedEventArgs e)
-        {
-            Regex regex = new Regex(@"(.*)\{(.*)\}");
+            MessageBox.Show(ClrPicker.SelectedColor.ToString());
 
-            string textForGame = SaveTextForGame.Text;
+            File.WriteAllText(Sources.Font(), "");
 
-            if (textForGame != "")
+            for (int i = 0; i < allText.Length; ++i)
             {
-                if(regex.IsMatch(textForGame)) 
+                if (allText[i].StartsWith("BrushColor:"))
                 {
-                    File.AppendAllText(Sources.Games(), "\n" + textForGame);
+                    allText[i] = "BrushColor:" + ClrPicker.SelectedColor.ToString();
+                    break;
                 }
             }
 
-            SaveTextForGame.Text = "";
+            for (int i = 0; i < allText.Length; ++i)
+            {
+                File.AppendAllText(Sources.Font(), allText[i] + "\n");
+            }
+
+            InitializeComponent();
+            SettingComponents();
+
+
         }
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {

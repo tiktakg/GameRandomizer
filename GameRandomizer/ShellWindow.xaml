@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GameRandomizer"
         xmlns:ui="http://schemas.modernwpf.com/2019"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
         ui:WindowHelper.UseModernWindowStyle="True"
         ui:ThemeManager.RequestedTheme="Dark"
@@ -204,7 +205,7 @@
                     <WrapPanel Grid.Column="1" Grid.Row="0" Orientation="Horizontal" VerticalAlignment="Top"  Grid.RowSpan="2">
                         <Grid Width="175" Height="50"  Margin="10">
                             <Label Content="Размер шрифтов" HorizontalAlignment="Right" VerticalAlignment="Center"/>
-                            <TextBox Width="15" Height="25" HorizontalAlignment="Left"/>
+                            <TextBox Name="SaveFontSize" Width="15" Height="25" HorizontalAlignment="Left" KeyDown="SaveFontSize_Click"/>
                         </Grid>
                         <Grid Width="175" Height="50"  Margin="10">
                             <Label Content="Кнопка начала" HorizontalAlignment="Right" VerticalAlignment="Center"/>
@@ -213,16 +214,13 @@
                         <Grid Width="250" Height="50" Margin="10">
                             <Label Content="Текст режимов" HorizontalAlignment="Right" VerticalAlignment="Center"/>
                             <ComboBox Width="150" VerticalAlignment="Center" SelectionChanged="ComboBox_SelectionChanged">
-                                <TextBox Name="fastMode"  Width="150" Height="25" HorizontalAlignment="Left"/>
-                                <TextBox Name="slowMode"  Width="150" Height="25" HorizontalAlignment="Left"/>
+                                <TextBox Name="fastMode"  Text="Быстро" Width="150" Height="25" HorizontalAlignment="Left"/>
+                                <TextBox Name="slowMode"  Text="С загрузкой" Width="150" Height="25" HorizontalAlignment="Left"/>
                             </ComboBox>
                         </Grid>
-                        <Grid Width="200" Height="50"  Margin="10">
-                            <Label Content="Цвет текста" HorizontalAlignment="Right" VerticalAlignment="Center"/>
-                            <ComboBox VerticalAlignment="Center" Width="100">
-                                <Label Content="Красный" Foreground="Red" Width="100" Height="25"/>
-                                <Label Content="Белый" Foreground="White" Width="100" Height="25"/>
-                            </ComboBox>
+                        <Grid Width="250" Height="50"  Margin="10">
+                            <Button Content="Установить цвет текста" HorizontalAlignment="Right" VerticalAlignment="Center" Click="ChangeFontColor_Click"/>
+                            <xctk:ColorPicker Name="ClrPicker" VerticalAlignment="Center" Width="75" HorizontalAlignment="Left"></xctk:ColorPicker>
                         </Grid>
                         <Grid Width="200" Height="50"  Margin="10">
                             <Label Content="Цвет Дизайна 1" HorizontalAlignment="Right" VerticalAlignment="Center"/>
@@ -245,18 +243,16 @@
                     <WrapPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="2">
                         <Grid Width="550" Height="50" Margin="10">
                             <Label Content="Заголовок" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                            <TextBox Name="SaveTextForHead" Width="300" Height="25" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                            <Button  Content="Сохранить" Margin="10" HorizontalAlignment="Right" VerticalAlignment="Top" Click="SaveHead_Click"/>
+                            <TextBox Name="SaveTextForHead" Width="300" Height="25" HorizontalAlignment="Center" VerticalAlignment="Center" KeyDown="SaveHead_Click"/>
+                            
                         </Grid>
                         <Grid Width="550" Height="50" Margin="10">
                             <Label Content="Добавление игры" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                            <TextBox Name="SaveTextForGame" Width="300" Height="25" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                            <Button Name="SaveGame" Content="Сохранить" Margin="10" HorizontalAlignment="Right" VerticalAlignment="Top" Click="SaveGame_Click"/>
+                            <TextBox Name="SaveTextForGame" Width="300" Height="25" HorizontalAlignment="Center" VerticalAlignment="Center" KeyDown="SaveGame_Click"/>
                         </Grid>
                         <Grid Width="550" Height="50" Margin="10">
                             <Label Content="Добавление фраз" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                            <TextBox Name="SaveTextForPhrases" Width="300" Height="25" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                            <Button Content="Сохранить" Margin="10" HorizontalAlignment="Right" VerticalAlignment="Top" Click="SavePhrases_Click"/>
+                            <TextBox Name="SaveTextForPhrases" Width="300" Height="25" HorizontalAlignment="Center" VerticalAlignment="Center" KeyDown="SavePhrases_Click"/>
                         </Grid>
                     </WrapPanel>
 

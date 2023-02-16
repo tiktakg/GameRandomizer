@@ -8,6 +8,7 @@ using System.Windows.Documents;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using WpfColorFontDialog;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace GameRandomizer
 {
@@ -38,14 +39,12 @@ namespace GameRandomizer
             #region Color
 
             string ColorName = regex.Match(Settings.Single(x => x.StartsWith("BrushColor"))).Groups[2].Value.Trim();
-            PropertyInfo ColorPropInfo = typeof(Colors).GetProperty(ColorName);
-            Color ColorFromColors = (Color)ColorPropInfo?.GetValue(null);
             fi.BrushColor = new SolidColorBrush(new Color()
             {
-                A = ColorFromColors.A,
-                R = ColorFromColors.R,
-                G = ColorFromColors.G,
-                B = ColorFromColors.B
+                A = Convert.ToByte(ColorName[1] + "" + ColorName[2], 16),
+                R = Convert.ToByte(ColorName[3] + "" + ColorName[4], 16),
+                G = Convert.ToByte(ColorName[5] + "" + ColorName[6], 16),
+                B = Convert.ToByte(ColorName[7] + "" + ColorName[8], 16)
             });
 
             #endregion
@@ -92,6 +91,12 @@ namespace GameRandomizer
             fi.Color
             */
             return fi;
+        }
+        public static double GetFontSize()
+        {
+            string[] Settings = File.ReadAllLines(Sources.Font());
+            Regex regex = new Regex(@"(.*)\:(.*)");
+            return double.Parse(regex.Match(Settings.Single(x => x.StartsWith("Size"))).Groups[2].Value.Trim());
         }
         public static string GetHeadLineText(string text)
         {
