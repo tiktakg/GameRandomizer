@@ -325,13 +325,13 @@ namespace GameRandomizer
                     if (allText[i].StartsWith("БыстраяКнопка:"))
                     {
                         allText[i] = "БыстраяКнопка:" + fastModeText;
-                       
+                     
                     }
 
                     if (allText[i].StartsWith("МедленнаяКнопка:"))
                     {
                         allText[i] = "МедленнаяКнопка:" + slowModeText;
-                       
+                   
                     }
                 }
 
