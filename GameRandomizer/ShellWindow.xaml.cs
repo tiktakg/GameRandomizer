@@ -293,15 +293,12 @@ namespace GameRandomizer
                 }
             }
 
-            for (int i = 0; i < allText.Length; ++i)
-            {
+            for (int i = 0; i < allText.Length; ++i) 
                 File.AppendAllText(Sources.Font(), allText[i] + "\n");
-            }
+            
 
             InitializeComponent();
             SettingComponents();
-
-
         }
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -310,29 +307,26 @@ namespace GameRandomizer
             string fastModeText = fastMode.Text;
             string slowModeText = slowMode.Text;
 
-
             if ((slowModeText != "") & (fastModeText != ""))
             {
                 FastRButton.Content = fastModeText;
                 SlowRButton.Content = slowModeText;
 
-
                 File.WriteAllText(Sources.ElementTexts(), "");
 
                 for (int i = 0; i < allText.Length; ++i)
                 {
-
                     if (allText[i].StartsWith("БыстраяКнопка:"))
                     {
                         allText[i] = "БыстраяКнопка:" + fastModeText;
-                       
                     }
+
 
                     if (allText[i].StartsWith("МедленнаяКнопка:"))
                     {
                         allText[i] = "МедленнаяКнопка:" + slowModeText;
-                       
-                    }
+                    }    
+                        
                 }
 
                 File.WriteAllText(Sources.ElementTexts(), "");
@@ -344,5 +338,7 @@ namespace GameRandomizer
             }
 
         }
+
+     
     }
 }
