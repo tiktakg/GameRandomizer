@@ -189,6 +189,7 @@ namespace GameRandomizer
 
                     File.WriteAllText(Sources.ElementTexts(), "");
 
+
                     for (int i = 0; i < allText.Length; ++i)
                     {
 
@@ -250,10 +251,10 @@ namespace GameRandomizer
             {
                 string[] allText = File.ReadAllLines(Sources.Font());
                 string textForHead = SaveFontSize.Text;
-
                 if (t > 0 && t <= 64)
                 {
                     File.WriteAllText(Sources.Font(), "");
+
 
                     for (int i = 0; i < allText.Length; ++i)
                     {
@@ -293,12 +294,15 @@ namespace GameRandomizer
                 }
             }
 
-            for (int i = 0; i < allText.Length; ++i) 
+
+            for (int i = 0; i < allText.Length; ++i)
+            {
                 File.AppendAllText(Sources.Font(), allText[i] + "\n");
-            
+            }
 
             InitializeComponent();
             SettingComponents();
+
         }
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
