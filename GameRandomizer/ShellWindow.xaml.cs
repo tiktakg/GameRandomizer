@@ -57,6 +57,8 @@ namespace GameRandomizer
 
             SlowRButton.Content = Tools.GetHeadLineText("МедленнаяКнопка");
             FastRButton.Content = Tools.GetHeadLineText("БыстраяКнопка");
+            fastMode.Text = Tools.GetHeadLineText("БыстраяКнопка");
+            slowMode.Text = Tools.GetHeadLineText("МедленнаяКнопка");
 
 
             LimitInSeconds = Tools.GetTimeLimit();
@@ -81,6 +83,8 @@ namespace GameRandomizer
             else
             {
                 StartOfRandomization();
+                RingProgressBar.Value = 0;
+                SimpleProgressBar.Value = 0;
                 ProgressRing.IsActive = true;
                 Timer.Interval = new TimeSpan(0, 0, 1);
                 Timer.Start();
@@ -144,7 +148,6 @@ namespace GameRandomizer
             UpdateProgressControls();
             UpdatePhrases();
         }
-
         private void UpdatePhrases()
         {
             Random rnd = new Random();
@@ -178,33 +181,10 @@ namespace GameRandomizer
         }
         private void SaveHead_Click(object sender, KeyEventArgs e)
         {
-            if(e.Key ==Key.Enter) 
+            if (e.Key == Key.Enter)
             {
-                string[] allText = File.ReadAllLines(Sources.ElementTexts());
-                string textForHead = SaveTextForHead.Text;
-
-                if (textForHead != "")
-                {
-                    HeadLineText.Text = textForHead;
-
-                    File.WriteAllText(Sources.ElementTexts(), "");
-
-                    for (int i = 0; i < allText.Length; ++i)
-                    {
-
-                        if (allText[i].StartsWith("Заголовок:"))
-                        {
-                            allText[i] = "Заголовок:" + textForHead;
-                            break;
-                        }
-                    }
-
-                    for (int i = 0; i < allText.Length; ++i)
-                    {
-                        File.AppendAllText(Sources.ElementTexts(), allText[i] + "\n");
-                    }
-                }
-
+                SaveText(SaveTextForHead.Text, "Заголовок:");
+                HeadLineText.Text = SaveTextForHead.Text;
                 SaveTextForHead.Text = "";
             }
         }
@@ -249,17 +229,21 @@ namespace GameRandomizer
             if (e.Key== Key.Enter && Int32.TryParse(SaveFontSize.Text,out int t))
             {
                 string[] allText = File.ReadAllLines(Sources.Font());
-                string textForHead = SaveFontSize.Text;
+                string textForFontSize = SaveFontSize.Text;
+
+                Regex regex = new Regex(@"(.*)\:(.*)");
+                int d = int.Parse(regex.Match(allText.Single(x => x.StartsWith("Size"))).Groups[2].Value.Trim());
 
                 if (t > 0 && t <= 64)
                 {
+
                     File.WriteAllText(Sources.Font(), "");
 
                     for (int i = 0; i < allText.Length; ++i)
                     {
                         if (allText[i].StartsWith("Size:"))
                         {
-                            allText[i] = "Size:" + textForHead;
+                            allText[i] = "Size:" + textForFontSize;
                             break;
                         }
                     }
@@ -268,9 +252,19 @@ namespace GameRandomizer
                     {
                         File.AppendAllText(Sources.Font(), allText[i] + "\n");
                     }
+                
+                    if (d > Convert.ToInt32(textForFontSize))
+                    {
+                        HeadLineText.FontSize -= 10d;
+                        PhrasesTextBlock.FontSize -= 5d;
+                    }
+                    else if(d < Convert.ToInt32(textForFontSize))
+                    {
+                        HeadLineText.FontSize += 10d;
+                        PhrasesTextBlock.FontSize += 5d;
+                    }
 
-                    InitializeComponent();
-                    SettingComponents();
+                    FontInfo.ApplyFont(MainTabItem, Tools.GetFont());
                 }
             }
             
@@ -278,9 +272,9 @@ namespace GameRandomizer
         private void ChangeFontColor_Click(object? sender, EventArgs e)
         {
             string[] allText = File.ReadAllLines(Sources.Font());
-            string textForHead = SaveFontSize.Text;
 
             MessageBox.Show(ClrPicker.SelectedColor.ToString());
+
 
             File.WriteAllText(Sources.Font(), "");
 
@@ -298,49 +292,46 @@ namespace GameRandomizer
                 File.AppendAllText(Sources.Font(), allText[i] + "\n");
             }
 
-            InitializeComponent();
-            SettingComponents();
-
-
+            FontInfo.ApplyFont(MainTabItem, Tools.GetFont());   
         }
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            SaveText(fastMode.Text, "БыстраяКнопка:");
+            SaveText(slowMode.Text, "МедленнаяКнопка:");
+
+            FastRButton.Content = fastMode.Text;
+            SlowRButton.Content = slowMode.Text;
+        }
+
+        private void ButtonSettings_TextChanged(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                SaveText(ButtonSettings.Text, "КнопкаНачала:");
+                StartRandomButton.Content = ButtonSettings.Text;
+            }  
+        }
+
+        private void SaveText(string textForSave,string textforSerch)
+        {
             string[] allText = File.ReadAllLines(Sources.ElementTexts());
 
-            string fastModeText = fastMode.Text;
-            string slowModeText = slowMode.Text;
+            File.WriteAllText(Sources.ElementTexts(), "");
 
-
-            if ((slowModeText != "") & (fastModeText != ""))
+            for (int i = 0; i < allText.Length; ++i)
             {
-                FastRButton.Content = fastModeText;
-                SlowRButton.Content = slowModeText;
 
-
-                File.WriteAllText(Sources.ElementTexts(), "");
-
-                for (int i = 0; i < allText.Length; ++i)
+                if (allText[i].StartsWith(textforSerch))
                 {
-
-                    if (allText[i].StartsWith("БыстраяКнопка:"))
-                    {
-                        allText[i] = "БыстраяКнопка:" + fastModeText;
-                     
-                    }
-
-                    if (allText[i].StartsWith("МедленнаяКнопка:"))
-                    {
-                        allText[i] = "МедленнаяКнопка:" + slowModeText;
-                   
-                    }
+                    allText[i] = textforSerch + textForSave;
+                    break;
                 }
+            }
 
-                File.WriteAllText(Sources.ElementTexts(), "");
-
-                for (int i = 0; i < allText.Length; ++i)
-                {
-                    File.AppendAllText(Sources.ElementTexts(), allText[i] + "\n");
-                }
+           
+            for (int i = 0; i < allText.Length; ++i)
+            {
+                File.AppendAllText(Sources.ElementTexts(), allText[i] + "\n");
             }
 
         }

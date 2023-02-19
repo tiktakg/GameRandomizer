@@ -209,7 +209,7 @@
                         </Grid>
                         <Grid Width="175" Height="50"  Margin="10">
                             <Label Content="Кнопка начала" HorizontalAlignment="Right" VerticalAlignment="Center"/>
-                            <TextBox Name="ButtonSettings" Width="75" Height="25" HorizontalAlignment="Left"/>
+                            <TextBox Name="ButtonSettings" Width="75" Height="25" HorizontalAlignment="Left" KeyDown="ButtonSettings_TextChanged"/>
                         </Grid>
                         <Grid Width="250" Height="50" Margin="10">
                             <Label Content="Текст режимов" HorizontalAlignment="Right" VerticalAlignment="Center"/>
@@ -220,23 +220,14 @@
                         </Grid>
                         <Grid Width="250" Height="50"  Margin="10">
                             <Button Content="Установить цвет текста" HorizontalAlignment="Right" VerticalAlignment="Center" Click="ChangeFontColor_Click"/>
-                            <xctk:ColorPicker Name="ClrPicker" VerticalAlignment="Center" Width="75" HorizontalAlignment="Left"></xctk:ColorPicker>
-                        </Grid>
-                        <Grid Width="200" Height="50"  Margin="10">
-                            <Label Content="Цвет Дизайна 1" HorizontalAlignment="Right" VerticalAlignment="Center"/>
-                            <ComboBox VerticalAlignment="Center">
-                                <Label Content="Красный" Foreground="Red" Width="100" Height="25"/>
-                                <Label Content="Белый" Foreground="White" Width="100" Height="25"/>
-                            </ComboBox>
-                        </Grid>
-                        <Grid Width="200" Height="50"  Margin="10">
-                            <Label Content="Цвет Дизайна 2" HorizontalAlignment="Right" VerticalAlignment="Center"/>
-
-                            <ComboBox VerticalAlignment="Center">
-                                <Label Content="Красный" Foreground="Red" Width="100" Height="25"/>
-                                <Label Content="Белый" Foreground="White" Width="100" Height="25"/>
-                            </ComboBox>
-                            
+                            <xctk:ColorPicker Name="ClrPicker" VerticalAlignment="Center" Width="75" HorizontalAlignment="Left" Background="Black" TabBackground="White" HeaderBackground="White" DropDownBorderBrush="White" Foreground="White" HeaderForeground="White" TabForeground="White">
+                                <xctk:ColorPicker.DropDownBackground>
+                                    <LinearGradientBrush EndPoint="0,1">
+                                        <GradientStop Color="#FFF0F0F0"/>
+                                        <GradientStop Color="Black" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </xctk:ColorPicker.DropDownBackground>
+                            </xctk:ColorPicker>
                         </Grid>
                     </WrapPanel>
 
