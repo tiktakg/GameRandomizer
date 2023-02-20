@@ -91,7 +91,7 @@
                             <StackPanel Margin="0 15 0 0">
                                 <RadioButton x:Name="FastRButton"
                                              IsChecked="True"></RadioButton>
-                                <RadioButton x:Name="SlowRButton"></RadioButton>
+                                <RadioButton x:Name="SlowRButton" Foreground="#FFEE0808"></RadioButton>
                             </StackPanel>
                             <Button HorizontalAlignment="Left"
                                     Margin="0 15 0 0"

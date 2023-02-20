@@ -8,6 +8,7 @@ using System.Windows.Documents;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using WpfColorFontDialog;
+using static System.Net.Mime.MediaTypeNames;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace GameRandomizer
@@ -138,10 +139,10 @@ namespace GameRandomizer
             string GameMode = GameModes[rnd.NextInt64(0, GameModes.Length)];
             return $"{GameName} : {GameMode}";
         }
-        public static SolidColorBrush GetProgressBarFillingColor()
+        public static SolidColorBrush GetProgressBarFillingColor(string text)
         {
             string ColorInHex = new Regex(@"(.*)\:(.*)")
-                .Match(File.ReadAllLines(Sources.ElementTexts()).Single(x => x.StartsWith("ЦветШкалыПрогресса")))
+                .Match(File.ReadAllLines(Sources.Font()).Single(x => x.StartsWith(text)))
                 .Groups[2]
                 .Value
                 .Trim();

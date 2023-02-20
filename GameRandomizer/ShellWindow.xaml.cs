@@ -60,13 +60,15 @@ namespace GameRandomizer
             fastMode.Text = Tools.GetHeadLineText("БыстраяКнопка");
             slowMode.Text = Tools.GetHeadLineText("МедленнаяКнопка");
 
+            FastRButton.Foreground = Tools.GetProgressBarFillingColor("BrushColor:");
+            SlowRButton.Foreground = Tools.GetProgressBarFillingColor("BrushColor:");
 
             LimitInSeconds = Tools.GetTimeLimit();
 
             FillingStep = 100d / LimitInSeconds;
 
-            RingProgressBar.Foreground = Tools.GetProgressBarFillingColor();
-            SimpleProgressBar.Foreground = Tools.GetProgressBarFillingColor();
+            RingProgressBar.Foreground = Tools.GetProgressBarFillingColor("ЦветШкалыПрогресса:");
+            SimpleProgressBar.Foreground = Tools.GetProgressBarFillingColor("ЦветШкалыПрогресса:");
         }
 
         private void Window_Closed(object sender, EventArgs e)
@@ -224,15 +226,13 @@ namespace GameRandomizer
         }
         private void SaveFontSize_Click(object sender, KeyEventArgs e) 
         {
-            
-
             if (e.Key== Key.Enter && Int32.TryParse(SaveFontSize.Text,out int t))
             {
                 string[] allText = File.ReadAllLines(Sources.Font());
                 string textForFontSize = SaveFontSize.Text;
 
                 Regex regex = new Regex(@"(.*)\:(.*)");
-                int d = int.Parse(regex.Match(allText.Single(x => x.StartsWith("Size"))).Groups[2].Value.Trim());
+                int fontSize = int.Parse(regex.Match(allText.Single(x => x.StartsWith("Size"))).Groups[2].Value.Trim());
 
                 if (t > 0 && t <= 64)
                 {
@@ -253,12 +253,12 @@ namespace GameRandomizer
                         File.AppendAllText(Sources.Font(), allText[i] + "\n");
                     }
                 
-                    if (d > Convert.ToInt32(textForFontSize))
+                    if (fontSize > Convert.ToInt32(textForFontSize))
                     {
                         HeadLineText.FontSize -= 10d;
                         PhrasesTextBlock.FontSize -= 5d;
                     }
-                    else if(d < Convert.ToInt32(textForFontSize))
+                    else if(fontSize < Convert.ToInt32(textForFontSize))
                     {
                         HeadLineText.FontSize += 10d;
                         PhrasesTextBlock.FontSize += 5d;
@@ -273,7 +273,9 @@ namespace GameRandomizer
         {
             string[] allText = File.ReadAllLines(Sources.Font());
 
-            MessageBox.Show(ClrPicker.SelectedColor.ToString());
+            SlowRButton.Foreground =  new SolidColorBrush((Color)ColorConverter.ConvertFromString(ClrPicker.SelectedColor.ToString()));
+            FastRButton.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString(ClrPicker.SelectedColor.ToString()));
+
 
 
             File.WriteAllText(Sources.Font(), "");
@@ -312,7 +314,7 @@ namespace GameRandomizer
             }  
         }
 
-        private void SaveText(string textForSave,string textforSerch)
+        private void SaveText(string textForSave,string textforSearch)
         {
             string[] allText = File.ReadAllLines(Sources.ElementTexts());
 
@@ -321,9 +323,9 @@ namespace GameRandomizer
             for (int i = 0; i < allText.Length; ++i)
             {
 
-                if (allText[i].StartsWith(textforSerch))
+                if (allText[i].StartsWith(textforSearch))
                 {
-                    allText[i] = textforSerch + textForSave;
+                    allText[i] = textforSearch + textForSave;
                     break;
                 }
             }
