@@ -1,7 +1,0 @@
-﻿BrushColor:#FF8A2BE2
-Family:Segoe UI
-Size:14
-Style:Normal
-Stretch:Normal
-Weight:Normal
-ЦветШкалыПрогресса:#FF0ED145

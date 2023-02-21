@@ -40,6 +40,7 @@ namespace GameRandomizer
 
             Logo.Source = Tools.PathToImage(Sources.MainLogo());
             LogoSettings.Source = Tools.PathToImage(Sources.MainLogo());
+            LogoSettings_2.Source = Tools.PathToImage(Sources.ProgressBarImage());
 
             LogoInProgressBar.Source = Tools.PathToImage(Sources.ProgressBarImage());
 
@@ -169,12 +170,27 @@ namespace GameRandomizer
 
             if (result == true)
             {
-
                 File.Delete(Directory.GetCurrentDirectory() + @"\Sources\Images\MainLogo.png");
                 File.Copy(dialog.FileName, Directory.GetCurrentDirectory() + @"\Sources\Images\MainLogo.png");
                 InvalidateVisual();
                 SettingComponents();
+            }
+        }
+        private void LogoClick2(object? sender, EventArgs e)
+        {
+            var dialog = new Microsoft.Win32.OpenFileDialog();
+            dialog.FileName = "Document"; // Default file name
+            dialog.DefaultExt = ".png"; // Default file extension
+            dialog.Filter = "PNG|*.png|JPEG|*.jpeg|BMP|*.bmp|TIFF|*.tiff|GIF|*.gif"; // Filter files by extension
 
+            bool? result = dialog.ShowDialog();
+
+            if (result == true)
+            {
+                File.Delete(Directory.GetCurrentDirectory() + @"\Sources\Images\ProgressBarImage.png");
+                File.Copy(dialog.FileName, Directory.GetCurrentDirectory() + @"\Sources\Images\ProgressBarImage.png");
+                InvalidateVisual();
+                SettingComponents();
             }
         }
         private void ApplySettings(object? sender, EventArgs e)
@@ -336,6 +352,43 @@ namespace GameRandomizer
                 File.AppendAllText(Sources.ElementTexts(), allText[i] + "\n");
             }
 
+        }
+        
+        
+        private void LogoSettings_MouseEnter(object sender, MouseEventArgs e)
+        {
+            LogoSettingsLabel.Content = "Выбрать лого";
+        }
+        private void LogoSettings_MouseLeave(object sender, MouseEventArgs e)
+        {
+            LogoSettingsLabel.Content = "";
+        }
+
+        private void LogoSettings2_MouseEnter(object sender, MouseEventArgs e)
+        {
+            LogoSettingsLabel2.Content = "Выбрать лого";
+        }
+        private void LogoSettings2_MouseLeave(object sender, MouseEventArgs e)
+        {
+            LogoSettingsLabel2.Content = "";
+        }
+
+        private void zxc_Click(object sender, RoutedEventArgs e)
+        {
+            ColorFontDialog dialog;
+            FontInfo font;
+
+            dialog = new();
+            dialog.Font = FontInfo.GetControlFont(MainTabItem);
+            dialog.FontSizes = new int[] { 10, 12, 14, 16, 18, 20, 22 };
+            if (dialog.ShowDialog() == true)
+            {
+                font = dialog.Font;
+                if (font != null)
+                {
+                    FontInfo.ApplyFont(MainTabItem, font);
+                }
+            }
         }
     }
 }

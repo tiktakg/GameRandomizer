@@ -190,7 +190,7 @@
             <TabItem Header="Настройки">
                 <Grid Height="408">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="150" ></ColumnDefinition>
+                        <ColumnDefinition Width="300" ></ColumnDefinition>
                         <ColumnDefinition Width="1*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
@@ -198,10 +198,15 @@
                         <RowDefinition Height="1*"></RowDefinition>
                         <RowDefinition Height="1*"></RowDefinition>
                     </Grid.RowDefinitions>
-
-                    <Image Grid.Column="0" Grid.Row="0" Name="LogoSettings" Width="100" Height="100" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0"></Image>
-                    <Button Grid.Column="0" Grid.Row="0" Click="LogoClick1" Name="LogoSettingsLabel" Content="Выбрать Лого" Foreground="White" Width="120" Height="50" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="5,0,0,0" />
-
+                    <Grid HorizontalAlignment="Left">
+                        <Image Grid.Column="0" Grid.Row="0" Name="LogoSettings" Width="150" Height="150" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0"></Image>
+                        <Button Grid.Column="0" Grid.Row="0" Click="LogoClick1" Name="LogoSettingsLabel"  Foreground="White" Width="150" Height="150" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0" Background="Transparent" MouseEnter="LogoSettings_MouseEnter"  MouseLeave="LogoSettings_MouseLeave"/>
+                    </Grid>
+                    <Grid HorizontalAlignment="Right">
+                        <Image Grid.Column="0" Grid.Row="0" Name="LogoSettings_2" Width="150" Height="150" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0"></Image>
+                        <Button Grid.Column="0" Grid.Row="0" Click="LogoClick2" Name="LogoSettingsLabel2"  Foreground="White" Width="150" Height="150" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0" Background="Transparent" MouseEnter="LogoSettings2_MouseEnter"  MouseLeave="LogoSettings2_MouseLeave"/>
+                    </Grid>
+                    
                     <WrapPanel Grid.Column="1" Grid.Row="0" Orientation="Horizontal" VerticalAlignment="Top"  Grid.RowSpan="2">
                         <Grid Width="175" Height="50"  Margin="10">
                             <Label Content="Размер шрифтов" HorizontalAlignment="Right" VerticalAlignment="Center"/>
@@ -229,6 +234,7 @@
                                 </xctk:ColorPicker.DropDownBackground>
                             </xctk:ColorPicker>
                         </Grid>
+                        <Button Name="zxc" Content="Выбрать шрифт" Click="zxc_Click"/>
                     </WrapPanel>
 
                     <WrapPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="2">
