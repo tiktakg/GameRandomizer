@@ -61,15 +61,15 @@ namespace GameRandomizer
             fastMode.Text = Tools.GetHeadLineText("БыстраяКнопка");
             slowMode.Text = Tools.GetHeadLineText("МедленнаяКнопка");
 
-            FastRButton.Foreground = Tools.GetProgressBarFillingColor("BrushColor:");
-            SlowRButton.Foreground = Tools.GetProgressBarFillingColor("BrushColor:");
+            FastRButton.Foreground = Tools.GetProgressBarFillingColor("BrushColor:", Sources.Font());
+            SlowRButton.Foreground = Tools.GetProgressBarFillingColor("BrushColor:", Sources.Font());
 
             LimitInSeconds = Tools.GetTimeLimit();
 
             FillingStep = 100d / LimitInSeconds;
 
-            RingProgressBar.Foreground = Tools.GetProgressBarFillingColor("ЦветШкалыПрогресса:");
-            SimpleProgressBar.Foreground = Tools.GetProgressBarFillingColor("ЦветШкалыПрогресса:");
+            RingProgressBar.Foreground = Tools.GetProgressBarFillingColor("ЦветШкалыПрогресса:",Sources.ElementTexts());
+            SimpleProgressBar.Foreground = Tools.GetProgressBarFillingColor("ЦветШкалыПрогресса:", Sources.ElementTexts());
         }
 
         private void Window_Closed(object sender, EventArgs e)
@@ -201,7 +201,7 @@ namespace GameRandomizer
         {
             if (e.Key == Key.Enter)
             {
-                SaveText(SaveTextForHead.Text, "Заголовок:");
+                Tools.SaveText(SaveTextForHead.Text, "Заголовок:", Sources.ElementTexts());
                 HeadLineText.Text = SaveTextForHead.Text;
                 SaveTextForHead.Text = "";
             }
@@ -223,7 +223,6 @@ namespace GameRandomizer
         {
             if(e.Key == Key.Enter) 
             {
-
                 Regex regex = new Regex(@"(.*)\{(.*)\}");
 
                 string textForGame = SaveTextForGame.Text;
@@ -240,6 +239,22 @@ namespace GameRandomizer
 
             }
         }
+        private void VinTextBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (SaveTextForGame.Text == "игра {режим1,режим2}")
+                SaveTextForGame.Text = "";
+            SaveTextForGame.Foreground = new SolidColorBrush(Colors.White);
+        }
+
+        private void VinTextBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(SaveTextForGame.Text))
+            {
+                SaveTextForGame.Text = "игра {режим1,режим2}";
+                SaveTextForGame.Foreground = new SolidColorBrush(Colors.White);
+            }
+        }
+
         private void SaveFontSize_Click(object sender, KeyEventArgs e) 
         {
             if (e.Key== Key.Enter && Int32.TryParse(SaveFontSize.Text,out int t))
@@ -287,35 +302,36 @@ namespace GameRandomizer
         }
         private void ChangeFontColor_Click(object? sender, EventArgs e)
         {
-            string[] allText = File.ReadAllLines(Sources.Font());
+            string[] allText = File.ReadAllLines(Sources.ElementTexts());
 
-            SlowRButton.Foreground =  new SolidColorBrush((Color)ColorConverter.ConvertFromString(ClrPicker.SelectedColor.ToString()));
-            FastRButton.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString(ClrPicker.SelectedColor.ToString()));
+            SimpleProgressBar.Foreground =  new SolidColorBrush((Color)ColorConverter.ConvertFromString(ClrPicker.SelectedColor.ToString()));
+            RingProgressBar.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString(ClrPicker.SelectedColor.ToString()));
 
 
+            Tools.SaveText(ClrPicker.SelectedColor.ToString(), "ЦветШкалыПрогресса:", Sources.ElementTexts());
 
-            File.WriteAllText(Sources.Font(), "");
+            File.WriteAllText(Sources.ElementTexts(), "");
 
             for (int i = 0; i < allText.Length; ++i)
             {
-                if (allText[i].StartsWith("BrushColor:"))
+                if (allText[i].StartsWith("ЦветШкалыПрогресса:"))
                 {
-                    allText[i] = "BrushColor:" + ClrPicker.SelectedColor.ToString();
+                    allText[i] = "ЦветШкалыПрогресса:" + ClrPicker.SelectedColor.ToString();
                     break;
                 }
             }
 
             for (int i = 0; i < allText.Length; ++i)
             {
-                File.AppendAllText(Sources.Font(), allText[i] + "\n");
+                File.AppendAllText(Sources.ElementTexts(), allText[i] + "\n");
             }
 
             FontInfo.ApplyFont(MainTabItem, Tools.GetFont());   
         }
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            SaveText(fastMode.Text, "БыстраяКнопка:");
-            SaveText(slowMode.Text, "МедленнаяКнопка:");
+            Tools.SaveText(fastMode.Text, "БыстраяКнопка:", Sources.ElementTexts());
+            Tools.SaveText(slowMode.Text, "МедленнаяКнопка:", Sources.ElementTexts());
 
             FastRButton.Content = fastMode.Text;
             SlowRButton.Content = slowMode.Text;
@@ -325,14 +341,12 @@ namespace GameRandomizer
         {
             if (e.Key == Key.Enter)
             {
-                SaveText(ButtonSettings.Text, "КнопкаНачала:");
+                Tools.SaveText(ButtonSettings.Text, "КнопкаНачала:", Sources.ElementTexts());
                 StartRandomButton.Content = ButtonSettings.Text;
             }  
         }
 
-        private void SaveText(string textForSave,string textforSearch)
-        {
-            string[] allText = File.ReadAllLines(Sources.ElementTexts());
+        
 
             File.WriteAllText(Sources.ElementTexts(), "");
 
@@ -390,5 +404,6 @@ namespace GameRandomizer
                 }
             }
         }
+
     }
 }

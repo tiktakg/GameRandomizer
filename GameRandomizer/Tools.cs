@@ -139,14 +139,38 @@ namespace GameRandomizer
             string GameMode = GameModes[rnd.NextInt64(0, GameModes.Length)];
             return $"{GameName} : {GameMode}";
         }
-        public static SolidColorBrush GetProgressBarFillingColor(string text)
+        public static SolidColorBrush GetProgressBarFillingColor(string text,string fileSave)
         {
+            //Sources.Font()
             string ColorInHex = new Regex(@"(.*)\:(.*)")
-                .Match(File.ReadAllLines(Sources.Font()).Single(x => x.StartsWith(text)))
+                .Match(File.ReadAllLines(fileSave).Single(x => x.StartsWith(text)))
                 .Groups[2]
                 .Value
                 .Trim();
             return new SolidColorBrush((Color)ColorConverter.ConvertFromString(ColorInHex));
+        }
+
+        public static void SaveText(string textForSave, string textforSearch, string fileForSave)
+        {
+            string[] allText = File.ReadAllLines(fileForSave);
+            File.WriteAllText(fileForSave, "");
+
+            for (int i = 0; i < allText.Length; ++i)
+            {
+
+                if (allText[i].StartsWith(textforSearch))
+                {
+                    allText[i] = textforSearch + textForSave;
+                    break;
+                }
+            }
+
+
+            for (int i = 0; i < allText.Length; ++i)
+            {
+                File.AppendAllText(Sources.ElementTexts(), allText[i] + "\n");
+            }
+
         }
     }
 }

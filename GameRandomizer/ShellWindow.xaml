@@ -45,11 +45,12 @@
 
                     <Grid>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="141*"/>
-                            <ColumnDefinition Width="59*"/>
+                            <ColumnDefinition Width="141*" />
+                            <ColumnDefinition Width="59*" />
                         </Grid.ColumnDefinitions>
                         <Image x:Name="Logo"
-                               Margin="8,8,8,8" Grid.ColumnSpan="2" />
+                               Margin="8,8,8,8"
+                               Grid.ColumnSpan="2" />
                     </Grid>
 
                     <Grid Grid.Column="1">
@@ -91,7 +92,8 @@
                             <StackPanel Margin="0 15 0 0">
                                 <RadioButton x:Name="FastRButton"
                                              IsChecked="True"></RadioButton>
-                                <RadioButton x:Name="SlowRButton" Foreground="#FFEE0808"></RadioButton>
+                                <RadioButton x:Name="SlowRButton"
+                                             Foreground="#FFEE0808"></RadioButton>
                             </StackPanel>
                             <Button HorizontalAlignment="Left"
                                     Margin="0 15 0 0"
@@ -123,7 +125,7 @@
                             <TextBlock x:Name="TextBlockToGameOutput"
                                        HorizontalAlignment="Center"
                                        VerticalAlignment="Center"
-                                       Grid.ColumnSpan="2"/>
+                                       Grid.ColumnSpan="2" />
 
                             <Grid Margin="15">
                                 <Grid.ColumnDefinitions>
@@ -145,7 +147,7 @@
                                              x:Name="RingProgressBar"
                                              Minimum="0"
                                              Maximum="100"
-                                             Background="#FF333333"/>
+                                             Background="#FF333333" />
                             </Grid>
 
                             <Grid Grid.Column="1">
@@ -157,7 +159,7 @@
                                 <ui:ProgressBar Margin="5 20 10 0"
                                                 x:Name="SimpleProgressBar"
                                                 Minimum="0"
-                                                Maximum="100"/>
+                                                Maximum="100" />
                                 <Grid Grid.Row="1">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="1*" />
@@ -168,7 +170,7 @@
                                                x:Name="WaitTextBlock"
                                                HorizontalAlignment="Center"
                                                VerticalAlignment="Center"
-                                               Text="Пожалуйста, подождите..."/>
+                                               Text="Пожалуйста, подождите..." />
 
                                     <Grid Grid.Column="1"
                                           x:Name="GridForProgressRing"
@@ -176,7 +178,7 @@
                                         <ui:ProgressRing Height="{Binding ElementName=GridForProgressRing, Path=ActualHeight}"
                                                          Width="{Binding ElementName=GridForProgressRing, Path=ActualWidth}"
                                                          IsActive="False"
-                                                         x:Name="ProgressRing"/>
+                                                         x:Name="ProgressRing" />
                                     </Grid>
                                 </Grid>
                             </Grid>
@@ -190,7 +192,9 @@
             <TabItem Header="Настройки">
                 <Grid Height="408">
                     <Grid.ColumnDefinitions>
+
                         <ColumnDefinition Width="300" ></ColumnDefinition>
+
                         <ColumnDefinition Width="1*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
@@ -212,24 +216,62 @@
                             <Label Content="Размер шрифтов" HorizontalAlignment="Right" VerticalAlignment="Center"/>
                             <TextBox Name="SaveFontSize" Width="15" Height="25" HorizontalAlignment="Left" KeyDown="SaveFontSize_Click"/>
                         </Grid>
-                        <Grid Width="175" Height="50"  Margin="10">
-                            <Label Content="Кнопка начала" HorizontalAlignment="Right" VerticalAlignment="Center"/>
-                            <TextBox Name="ButtonSettings" Width="75" Height="25" HorizontalAlignment="Left" KeyDown="ButtonSettings_TextChanged"/>
+                        <Grid Width="175"
+                              Height="50"
+                              Margin="10">
+                            <Label Content="Кнопка начала"
+                                   HorizontalAlignment="Right"
+                                   VerticalAlignment="Center" />
+                            <TextBox Name="ButtonSettings"
+                                     Width="75"
+                                     Height="25"
+                                     HorizontalAlignment="Left"
+                                     KeyDown="ButtonSettings_TextChanged" />
                         </Grid>
-                        <Grid Width="250" Height="50" Margin="10">
-                            <Label Content="Текст режимов" HorizontalAlignment="Right" VerticalAlignment="Center"/>
-                            <ComboBox Width="150" VerticalAlignment="Center" SelectionChanged="ComboBox_SelectionChanged">
-                                <TextBox Name="fastMode"  Text="Быстро" Width="150" Height="25" HorizontalAlignment="Left"/>
-                                <TextBox Name="slowMode"  Text="С загрузкой" Width="150" Height="25" HorizontalAlignment="Left"/>
+                        <Grid Width="250"
+                              Height="50"
+                              Margin="10">
+                            <Label Content="Текст режимов"
+                                   HorizontalAlignment="Right"
+                                   VerticalAlignment="Center" />
+                            <ComboBox Width="150"
+                                      VerticalAlignment="Center"
+                                      SelectionChanged="ComboBox_SelectionChanged">
+                                <TextBox Name="fastMode"
+                                         Text="Быстро"
+                                         Width="150"
+                                         Height="25"
+                                         HorizontalAlignment="Left" />
+                                <TextBox Name="slowMode"
+                                         Text="С загрузкой"
+                                         Width="150"
+                                         Height="25"
+                                         HorizontalAlignment="Left" />
                             </ComboBox>
                         </Grid>
-                        <Grid Width="250" Height="50"  Margin="10">
-                            <Button Content="Установить цвет текста" HorizontalAlignment="Right" VerticalAlignment="Center" Click="ChangeFontColor_Click"/>
-                            <xctk:ColorPicker Name="ClrPicker" VerticalAlignment="Center" Width="75" HorizontalAlignment="Left" Background="Black" TabBackground="White" HeaderBackground="White" DropDownBorderBrush="White" Foreground="White" HeaderForeground="White" TabForeground="White">
+                        <Grid Width="250"
+                              Height="50"
+                              Margin="10">
+                            <Button Content="Установить цвет текста"
+                                    HorizontalAlignment="Right"
+                                    VerticalAlignment="Center"
+                                    Click="ChangeFontColor_Click" />
+                            <xctk:ColorPicker Name="ClrPicker"
+                                              VerticalAlignment="Center"
+                                              Width="75"
+                                              HorizontalAlignment="Left"
+                                              Background="Black"
+                                              TabBackground="White"
+                                              HeaderBackground="White"
+                                              DropDownBorderBrush="White"
+                                              Foreground="White"
+                                              HeaderForeground="White"
+                                              TabForeground="White">
                                 <xctk:ColorPicker.DropDownBackground>
                                     <LinearGradientBrush EndPoint="0,1">
-                                        <GradientStop Color="#FFF0F0F0"/>
-                                        <GradientStop Color="Black" Offset="1"/>
+                                        <GradientStop Color="#FFF0F0F0" />
+                                        <GradientStop Color="Black"
+                                                      Offset="1" />
                                     </LinearGradientBrush>
                                 </xctk:ColorPicker.DropDownBackground>
                             </xctk:ColorPicker>
@@ -237,19 +279,52 @@
                         <Button Name="zxc" Content="Выбрать шрифт" Click="zxc_Click"/>
                     </WrapPanel>
 
-                    <WrapPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="2">
-                        <Grid Width="550" Height="50" Margin="10">
-                            <Label Content="Заголовок" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                            <TextBox Name="SaveTextForHead" Width="300" Height="25" HorizontalAlignment="Center" VerticalAlignment="Center" KeyDown="SaveHead_Click"/>
-                            
+                    <WrapPanel Grid.Row="1"
+                               Grid.Column="0"
+                               Grid.ColumnSpan="2"
+                               Grid.RowSpan="2">
+                        <Grid Width="550"
+                              Height="50"
+                              Margin="10">
+                            <Label Content="Заголовок"
+                                   HorizontalAlignment="Left"
+                                   VerticalAlignment="Center" />
+                            <TextBox Name="SaveTextForHead"
+                                     Width="300"
+                                     Height="25"
+                                     HorizontalAlignment="Center"
+                                     VerticalAlignment="Center"
+                                     KeyDown="SaveHead_Click" />
+
                         </Grid>
-                        <Grid Width="550" Height="50" Margin="10">
-                            <Label Content="Добавление игры" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                            <TextBox Name="SaveTextForGame" Width="300" Height="25" HorizontalAlignment="Center" VerticalAlignment="Center" KeyDown="SaveGame_Click"/>
+                        <Grid Width="550"
+                              Height="50"
+                              Margin="10">
+                            <Label Content="Добавление игры"
+                                   HorizontalAlignment="Left"
+                                   VerticalAlignment="Center" />
+                            <TextBox Name="SaveTextForGame"
+                                     GotFocus="VinTextBox_GotFocus"
+                                     LostFocus="VinTextBox_LostFocus"
+                                     Width="300"
+                                     Height="25"
+                                     HorizontalAlignment="Center"
+                                     VerticalAlignment="Center"
+                                     KeyDown="SaveGame_Click"
+                                     Text="игра {режим1,режим2}" />
                         </Grid>
-                        <Grid Width="550" Height="50" Margin="10">
-                            <Label Content="Добавление фраз" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                            <TextBox Name="SaveTextForPhrases" Width="300" Height="25" HorizontalAlignment="Center" VerticalAlignment="Center" KeyDown="SavePhrases_Click"/>
+                        <Grid Width="550"
+                              Height="50"
+                              Margin="10">
+                            <Label Content="Добавление фраз"
+                                   HorizontalAlignment="Left"
+                                   VerticalAlignment="Center" />
+                            <TextBox Name="SaveTextForPhrases"
+                                     Width="300"
+                                     Height="25"
+                                     HorizontalAlignment="Center"
+                                     VerticalAlignment="Center"
+                                     KeyDown="SavePhrases_Click" />
                         </Grid>
                     </WrapPanel>
 
