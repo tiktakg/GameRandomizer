@@ -23,10 +23,13 @@ namespace GameRandomizer
 {
     public partial class ShellWindow : Window
     {
+        private ColorFontDialog dialog;
         private DispatcherTimer Timer;
+        private FontInfo font;
         private int Counter;
         private int LimitInSeconds;
         private double FillingStep;
+
         public ShellWindow()
         {
             InitializeComponent();
@@ -45,6 +48,7 @@ namespace GameRandomizer
             LogoInProgressBar.Source = Tools.PathToImage(Sources.ProgressBarImage());
 
             FontInfo.ApplyFont(MainTabItem, Tools.GetFont());
+           
             HeadLineText.FontSize += 10d;
             HeadLineText.Text = Tools.GetHeadLineText("Заголовок");
 
@@ -58,9 +62,6 @@ namespace GameRandomizer
             FastRButton.Content = Tools.GetHeadLineText("БыстраяКнопка");
             fastMode.Text = Tools.GetHeadLineText("БыстраяКнопка");
             slowMode.Text = Tools.GetHeadLineText("МедленнаяКнопка");
-
-            FastRButton.Foreground = Tools.GetProgressBarFillingColor("BrushColor:", Sources.Font());
-            SlowRButton.Foreground = Tools.GetProgressBarFillingColor("BrushColor:", Sources.Font());
 
             LimitInSeconds = Tools.GetTimeLimit();
 
@@ -320,11 +321,11 @@ namespace GameRandomizer
 
         private void ChangeFonr_Click(object sender, RoutedEventArgs e)
         {
-            ColorFontDialog dialog;
-            FontInfo font;
+            
+            
 
             dialog = new();
-            dialog.Font = FontInfo.GetControlFont(MainTabItem);
+            dialog.Font = FontInfo.GetControlFont(FontButton);
             dialog.FontSizes = new int[] { 10, 12, 14, 16, 18, 20, 22 };
             if (dialog.ShowDialog() == true)
             {
