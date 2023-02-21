@@ -45,12 +45,13 @@
 
                     <Grid>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="141*" />
-                            <ColumnDefinition Width="59*" />
+                            <ColumnDefinition Width="39*" />
+                            <ColumnDefinition Width="11*" />
+                            <ColumnDefinition Width="21*" />
                         </Grid.ColumnDefinitions>
                         <Image x:Name="Logo"
                                Margin="8,8,8,8"
-                               Grid.ColumnSpan="2" />
+                               Grid.ColumnSpan="3" />
                     </Grid>
 
                     <Grid Grid.Column="1">
@@ -193,7 +194,7 @@
                 <Grid Height="408">
                     <Grid.ColumnDefinitions>
 
-                        <ColumnDefinition Width="300" ></ColumnDefinition>
+                        <ColumnDefinition Width="300"></ColumnDefinition>
 
                         <ColumnDefinition Width="1*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
@@ -203,19 +204,58 @@
                         <RowDefinition Height="1*"></RowDefinition>
                     </Grid.RowDefinitions>
                     <Grid HorizontalAlignment="Left">
-                        <Image Grid.Column="0" Grid.Row="0" Name="LogoSettings" Width="150" Height="150" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0"></Image>
-                        <Button Grid.Column="0" Grid.Row="0" Click="LogoClick1" Name="LogoSettingsLabel"  Foreground="White" Width="150" Height="150" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0" Background="Transparent" MouseEnter="LogoSettings_MouseEnter"  MouseLeave="LogoSettings_MouseLeave"/>
+                        <Image Grid.Column="0"
+                               Grid.Row="0"
+                               Name="LogoSettings"
+                               Width="150"
+                               Height="150"
+                               HorizontalAlignment="Left"
+                               VerticalAlignment="Top"
+                               Margin="10,10,0,0"></Image>
+                        <Button Grid.Column="0"
+                                Grid.Row="0"
+                                Click="LogoClick1"
+                                Name="LogoSettingsLabel"
+                                Foreground="White"
+                                Width="150"
+                                Height="150"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Top"
+                                Margin="10,10,0,0"
+                                Background="Transparent"
+                                MouseEnter="LogoSettings_MouseEnter"
+                                MouseLeave="LogoSettings_MouseLeave" />
                     </Grid>
                     <Grid HorizontalAlignment="Right">
-                        <Image Grid.Column="0" Grid.Row="0" Name="LogoSettings_2" Width="150" Height="150" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0"></Image>
-                        <Button Grid.Column="0" Grid.Row="0" Click="LogoClick2" Name="LogoSettingsLabel2"  Foreground="White" Width="150" Height="150" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0" Background="Transparent" MouseEnter="LogoSettings2_MouseEnter"  MouseLeave="LogoSettings2_MouseLeave"/>
+                        <Image Grid.Column="0"
+                               Grid.Row="0"
+                               Name="LogoSettings_2"
+                               Width="150"
+                               Height="150"
+                               HorizontalAlignment="Left"
+                               VerticalAlignment="Top"
+                               Margin="10,10,0,0"></Image>
+                        <Button Grid.Column="0"
+                                Grid.Row="0"
+                                Click="LogoClick2"
+                                Name="LogoSettingsLabel2"
+                                Foreground="White"
+                                Width="150"
+                                Height="150"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Top"
+                                Margin="10,10,0,0"
+                                Background="Transparent"
+                                MouseEnter="LogoSettings2_MouseEnter"
+                                MouseLeave="LogoSettings2_MouseLeave" />
                     </Grid>
-                    
-                    <WrapPanel Grid.Column="1" Grid.Row="0" Orientation="Horizontal" VerticalAlignment="Top"  Grid.RowSpan="2">
-                        <Grid Width="175" Height="50"  Margin="10">
-                            <Label Content="Размер шрифтов" HorizontalAlignment="Right" VerticalAlignment="Center"/>
-                            <TextBox Name="SaveFontSize" Width="15" Height="25" HorizontalAlignment="Left" KeyDown="SaveFontSize_Click"/>
-                        </Grid>
+
+                    <WrapPanel Grid.Column="1"
+                               Grid.Row="0"
+                               Orientation="Horizontal"
+                               VerticalAlignment="Top"
+                               Grid.RowSpan="2">
+
                         <Grid Width="175"
                               Height="50"
                               Margin="10">
@@ -249,10 +289,10 @@
                                          HorizontalAlignment="Left" />
                             </ComboBox>
                         </Grid>
-                        <Grid Width="250"
+                        <Grid Width="350"
                               Height="50"
                               Margin="10">
-                            <Button Content="Установить цвет текста"
+                            <Button Content="Установить цвет прогресс бара"
                                     HorizontalAlignment="Right"
                                     VerticalAlignment="Center"
                                     Click="ChangeFontColor_Click" />
@@ -276,7 +316,9 @@
                                 </xctk:ColorPicker.DropDownBackground>
                             </xctk:ColorPicker>
                         </Grid>
-                        <Button Name="zxc" Content="Выбрать шрифт" Click="zxc_Click"/>
+                        <Button Name="FontButton"
+                                Content="Выбрать шрифт"
+                                Click="ChangeFonr_Click" />
                     </WrapPanel>
 
                     <WrapPanel Grid.Row="1"

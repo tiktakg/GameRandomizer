@@ -48,8 +48,6 @@ namespace GameRandomizer
             HeadLineText.FontSize += 10d;
             HeadLineText.Text = Tools.GetHeadLineText("Заголовок");
 
-            SaveFontSize.Text = Convert.ToString(Tools.GetFontSize());
-
             PhrasesTextBlock.FontSize += 5d;
 
           
@@ -255,51 +253,7 @@ namespace GameRandomizer
             }
         }
 
-        private void SaveFontSize_Click(object sender, KeyEventArgs e) 
-        {
-            if (e.Key== Key.Enter && Int32.TryParse(SaveFontSize.Text,out int t))
-            {
-                string[] allText = File.ReadAllLines(Sources.Font());
-                string textForFontSize = SaveFontSize.Text;
-
-                Regex regex = new Regex(@"(.*)\:(.*)");
-                int fontSize = int.Parse(regex.Match(allText.Single(x => x.StartsWith("Size"))).Groups[2].Value.Trim());
-
-                if (t > 0 && t <= 64)
-                {
-
-                    File.WriteAllText(Sources.Font(), "");
-
-                    for (int i = 0; i < allText.Length; ++i)
-                    {
-                        if (allText[i].StartsWith("Size:"))
-                        {
-                            allText[i] = "Size:" + textForFontSize;
-                            break;
-                        }
-                    }
-
-                    for (int i = 0; i < allText.Length; ++i)
-                    {
-                        File.AppendAllText(Sources.Font(), allText[i] + "\n");
-                    }
-                
-                    if (fontSize > Convert.ToInt32(textForFontSize))
-                    {
-                        HeadLineText.FontSize -= 10d;
-                        PhrasesTextBlock.FontSize -= 5d;
-                    }
-                    else if(fontSize < Convert.ToInt32(textForFontSize))
-                    {
-                        HeadLineText.FontSize += 10d;
-                        PhrasesTextBlock.FontSize += 5d;
-                    }
-
-                    FontInfo.ApplyFont(MainTabItem, Tools.GetFont());
-                }
-            }
-            
-        }
+       
         private void ChangeFontColor_Click(object? sender, EventArgs e)
         {
             string[] allText = File.ReadAllLines(Sources.ElementTexts());
@@ -345,29 +299,6 @@ namespace GameRandomizer
                 StartRandomButton.Content = ButtonSettings.Text;
             }  
         }
-
-        
-
-            File.WriteAllText(Sources.ElementTexts(), "");
-
-            for (int i = 0; i < allText.Length; ++i)
-            {
-
-                if (allText[i].StartsWith(textforSearch))
-                {
-                    allText[i] = textforSearch + textForSave;
-                    break;
-                }
-            }
-
-           
-            for (int i = 0; i < allText.Length; ++i)
-            {
-                File.AppendAllText(Sources.ElementTexts(), allText[i] + "\n");
-            }
-
-        }
-        
         
         private void LogoSettings_MouseEnter(object sender, MouseEventArgs e)
         {
@@ -387,7 +318,7 @@ namespace GameRandomizer
             LogoSettingsLabel2.Content = "";
         }
 
-        private void zxc_Click(object sender, RoutedEventArgs e)
+        private void ChangeFonr_Click(object sender, RoutedEventArgs e)
         {
             ColorFontDialog dialog;
             FontInfo font;
