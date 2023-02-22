@@ -14,7 +14,7 @@
         Height="450"
         Width="850"
         Closed="Window_Closed">
-    <Grid>
+    <Grid Name="MainGrid">
         <TabControl>
             <TabControl.Background>
                 <LinearGradientBrush StartPoint="0 0"
@@ -94,7 +94,7 @@
                                 <RadioButton x:Name="FastRButton"
                                              IsChecked="True"></RadioButton>
                                 <RadioButton x:Name="SlowRButton"
-                                             Foreground="#FFEE0808"></RadioButton>
+                                             ></RadioButton>
                             </StackPanel>
                             <Button HorizontalAlignment="Left"
                                     Margin="0 15 0 0"
@@ -318,7 +318,7 @@
                         </Grid>
                         <Button Name="FontButton"
                                 Content="Выбрать шрифт"
-                                Click="ChangeFonr_Click" />
+                                Click="ChangeFont_Click" />
                     </WrapPanel>
 
                     <WrapPanel Grid.Row="1"
