@@ -319,11 +319,8 @@ namespace GameRandomizer
             LogoSettingsLabel2.Content = "";
         }
 
-        private void ChangeFonr_Click(object sender, RoutedEventArgs e)
+        private void ChangeFont_Click(object sender, RoutedEventArgs e)
         {
-            
-            
-
             dialog = new();
             dialog.Font = FontInfo.GetControlFont(FontButton);
             dialog.FontSizes = new int[] { 10, 12, 14, 16, 18, 20, 22 };
@@ -333,6 +330,20 @@ namespace GameRandomizer
                 if (font != null)
                 {
                     FontInfo.ApplyFont(MainTabItem, font);
+
+                    File.WriteAllText(Sources.Font(), $"");
+
+                    StreamWriter file = new StreamWriter(Sources.Font());
+                    file.WriteLine($"BrushColor:{font.Color.Name}");
+                    file.WriteLine($"Family:{font.Family}");
+                    file.WriteLine($"Size:{font.Size}");
+                    file.WriteLine($"Style:{font.Style}");
+                    file.WriteLine($"Stretch:{font.Stretch}");
+                    file.WriteLine($"Weight:{font.Weight}");
+                    file.Close();
+
+
+                    //Tools.SaveText(font., "Заголовок:", Sources.ElementTexts());
                 }
             }
         }

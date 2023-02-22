@@ -40,12 +40,14 @@ namespace GameRandomizer
             #region Color
 
             string ColorName = regex.Match(Settings.Single(x => x.StartsWith("BrushColor"))).Groups[2].Value.Trim();
+            PropertyInfo ColorPropInfo = typeof(Colors).GetProperty(ColorName);
+            Color ColorFromColors = (Color)ColorPropInfo?.GetValue(null);
             fi.BrushColor = new SolidColorBrush(new Color()
             {
-                A = Convert.ToByte(ColorName[1] + "" + ColorName[2], 16),
-                R = Convert.ToByte(ColorName[3] + "" + ColorName[4], 16),
-                G = Convert.ToByte(ColorName[5] + "" + ColorName[6], 16),
-                B = Convert.ToByte(ColorName[7] + "" + ColorName[8], 16)
+                A = ColorFromColors.A,
+                R = ColorFromColors.R,
+                G = ColorFromColors.G,
+                B = ColorFromColors.B
             });
 
             #endregion
