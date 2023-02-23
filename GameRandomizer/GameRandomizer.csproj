@@ -20,9 +20,17 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="settingImg1.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Extended.Wpf.Toolkit" Version="4.5.0" />
     <PackageReference Include="ModernWpfUI" Version="0.9.6" />
     <PackageReference Include="WpfColorFontDialog" Version="1.0.8" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="settingImg1.png" />
   </ItemGroup>
 
 </Project>

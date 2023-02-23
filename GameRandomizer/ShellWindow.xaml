@@ -55,9 +55,16 @@
                     </Grid>
 
                     <Grid Grid.Column="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0*" />
+                            <ColumnDefinition Width="3*" />
+                            <ColumnDefinition Width="316*" />
+                        </Grid.ColumnDefinitions>
                         <TextBlock x:Name="HeadLineText"
-                                   HorizontalAlignment="Center"
-                                   VerticalAlignment="Center" />
+                                   HorizontalAlignment="Left"
+                                   VerticalAlignment="Center"
+                                   Grid.Column="2"
+                                   Margin="314,0,0,0" />
                     </Grid>
 
                     <Grid Grid.Row="1"
@@ -93,8 +100,7 @@
                             <StackPanel Margin="0 15 0 0">
                                 <RadioButton x:Name="FastRButton"
                                              IsChecked="True"></RadioButton>
-                                <RadioButton x:Name="SlowRButton"
-                                             ></RadioButton>
+                                <RadioButton x:Name="SlowRButton"></RadioButton>
                             </StackPanel>
                             <Button HorizontalAlignment="Left"
                                     Margin="0 15 0 0"
@@ -324,19 +330,23 @@
                     <WrapPanel Grid.Row="1"
                                Grid.Column="0"
                                Grid.ColumnSpan="2"
-                               Grid.RowSpan="2">
+                               Grid.RowSpan="2"
+                               Margin="0,0,342,0">
                         <Grid Width="550"
                               Height="50"
                               Margin="10">
                             <Label Content="Заголовок"
                                    HorizontalAlignment="Left"
                                    VerticalAlignment="Center" />
-                            <TextBox Name="SaveTextForHead"
+                            <TextBox x:Name="SaveTextForHead"
                                      Width="300"
                                      Height="25"
                                      HorizontalAlignment="Center"
                                      VerticalAlignment="Center"
                                      KeyDown="SaveHead_Click" />
+
+
+
 
                         </Grid>
                         <Grid Width="550"
@@ -345,7 +355,7 @@
                             <Label Content="Добавление игры"
                                    HorizontalAlignment="Left"
                                    VerticalAlignment="Center" />
-                            <TextBox Name="SaveTextForGame"
+                            <TextBox x:Name="SaveTextForGame"
                                      GotFocus="VinTextBox_GotFocus"
                                      LostFocus="VinTextBox_LostFocus"
                                      Width="300"
@@ -361,7 +371,7 @@
                             <Label Content="Добавление фраз"
                                    HorizontalAlignment="Left"
                                    VerticalAlignment="Center" />
-                            <TextBox Name="SaveTextForPhrases"
+                            <TextBox x:Name="SaveTextForPhrases"
                                      Width="300"
                                      Height="25"
                                      HorizontalAlignment="Center"
@@ -369,23 +379,63 @@
                                      KeyDown="SavePhrases_Click" />
                         </Grid>
                     </WrapPanel>
+                    
+                    <Grid Grid.Column="1"
+                          Grid.Row="1"
+                          Margin="163,2,6,21"
+                          Grid.RowSpan="2">
+
+                        <Image x:Name="SettingsLogo"
+                               Source="/settingImg1.png"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Top"
+                               Margin="0,-5,0,0" />
+                    </Grid>
+
+                   
 
                 </Grid>
+
             </TabItem>
 
             <TabItem Header="Авторы">
                 <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="61*" />
+                        <ColumnDefinition Width="789*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid Margin="1,4,0,1"
+                          Grid.ColumnSpan="2">
+                        <TextBlock x:Name="HeadLineText1"
+                                   HorizontalAlignment="Left"
+                                   VerticalAlignment="Center"
+                                   Grid.Column="1" />
+                        <TextBlock HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   TextAlignment="Center">
+                            <Run Text="Авторы:" />
+                            <LineBreak />
+                            <Run Text="Astin_Torn" />
+                            <LineBreak />
+                            <Run Text="Chesno4ok" />
+                            <LineBreak />
+                            <Run Text="TikTak" />
+                            <LineBreak />
+                            <Run Text="drowninginthissea" />
+                        </TextBlock>
+                    </Grid>
 
                 </Grid>
             </TabItem>
         </TabControl>
         <ToggleButton Style="{StaticResource AnimatedSwitch}"
                       VerticalAlignment="Top"
-                      HorizontalAlignment="Right"
-                      Margin="0, 10, 12, 0"
+                      HorizontalAlignment="Left"
+                      Margin="799,12,0,0"
                       Opacity="0.5"
                       Height="{Binding ElementName=MainTabItem, Path=ActualHeight, Mode=OneWay}"
                       x:Name="ToggleRolfButton" />
+
 
     </Grid>
 </Window>

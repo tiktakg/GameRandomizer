@@ -44,6 +44,7 @@ namespace GameRandomizer
             Logo.Source = Tools.PathToImage(Sources.MainLogo());
             LogoSettings.Source = Tools.PathToImage(Sources.MainLogo());
             LogoSettings_2.Source = Tools.PathToImage(Sources.ProgressBarImage());
+            SettingsLogo.Source = Tools.PathToImage(Sources.MainLogoSettings());
 
             LogoInProgressBar.Source = Tools.PathToImage(Sources.ProgressBarImage());
 
@@ -352,7 +353,7 @@ namespace GameRandomizer
 
                     FastRButton.Foreground = Tools.GetProgressBarFillingColor("BrushColor:", Sources.Font());
                     SlowRButton.Foreground = Tools.GetProgressBarFillingColor("BrushColor:", Sources.Font());
-
+                    InitializeComponent();
                 }
             }
         }
