@@ -69,6 +69,10 @@ namespace GameRandomizer
 
             RingProgressBar.Foreground = Tools.GetProgressBarFillingColor("ЦветШкалыПрогресса:",Sources.ElementTexts());
             SimpleProgressBar.Foreground = Tools.GetProgressBarFillingColor("ЦветШкалыПрогресса:", Sources.ElementTexts());
+
+            FastRButton.Foreground = Tools.GetProgressBarFillingColor("BrushColor:", Sources.Font());
+            SlowRButton.Foreground = Tools.GetProgressBarFillingColor("BrushColor:", Sources.Font());
+
         }
 
         private void Window_Closed(object sender, EventArgs e)
@@ -259,29 +263,33 @@ namespace GameRandomizer
         {
             string[] allText = File.ReadAllLines(Sources.ElementTexts());
 
-            SimpleProgressBar.Foreground =  new SolidColorBrush((Color)ColorConverter.ConvertFromString(ClrPicker.SelectedColor.ToString()));
-            RingProgressBar.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString(ClrPicker.SelectedColor.ToString()));
-
-
-            Tools.SaveText(ClrPicker.SelectedColor.ToString(), "ЦветШкалыПрогресса:", Sources.ElementTexts());
-
-            File.WriteAllText(Sources.ElementTexts(), "");
-
-            for (int i = 0; i < allText.Length; ++i)
+            if(ClrPicker.SelectedColor.ToString() != "")
             {
-                if (allText[i].StartsWith("ЦветШкалыПрогресса:"))
+                SimpleProgressBar.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString(ClrPicker.SelectedColor.ToString()));
+                RingProgressBar.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString(ClrPicker.SelectedColor.ToString()));
+
+
+                Tools.SaveText(ClrPicker.SelectedColor.ToString(), "ЦветШкалыПрогресса:", Sources.ElementTexts());
+
+                File.WriteAllText(Sources.ElementTexts(), "");
+
+                for (int i = 0; i < allText.Length; ++i)
                 {
-                    allText[i] = "ЦветШкалыПрогресса:" + ClrPicker.SelectedColor.ToString();
-                    break;
+                    if (allText[i].StartsWith("ЦветШкалыПрогресса:"))
+                    {
+                        allText[i] = "ЦветШкалыПрогресса:" + ClrPicker.SelectedColor.ToString();
+                        break;
+                    }
                 }
-            }
 
-            for (int i = 0; i < allText.Length; ++i)
-            {
-                File.AppendAllText(Sources.ElementTexts(), allText[i] + "\n");
-            }
+                for (int i = 0; i < allText.Length; ++i)
+                {
+                    File.AppendAllText(Sources.ElementTexts(), allText[i] + "\n");
+                }
 
-            FontInfo.ApplyFont(MainTabItem, Tools.GetFont());   
+                FontInfo.ApplyFont(MainTabItem, Tools.GetFont());
+            }
+           
         }
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -342,8 +350,9 @@ namespace GameRandomizer
                     file.WriteLine($"Weight:{font.Weight}");
                     file.Close();
 
+                    FastRButton.Foreground = Tools.GetProgressBarFillingColor("BrushColor:", Sources.Font());
+                    SlowRButton.Foreground = Tools.GetProgressBarFillingColor("BrushColor:", Sources.Font());
 
-                    //Tools.SaveText(font., "Заголовок:", Sources.ElementTexts());
                 }
             }
         }
