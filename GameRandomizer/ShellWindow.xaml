@@ -360,6 +360,17 @@
                                      KeyDown="SaveGame_Click"
                                      Text="Игра {Режим_1, Режим_2, ...}" Margin="125,0,0,0" />
                         </Grid>
+                        <Grid Width="425" Height="60" Margin="10">
+                            <Label Content="Список Игр" VerticalAlignment="Center"/>
+                            <ComboBox Name="GameComboBox" Width="300" HorizontalAlignment="Right" Height="30" VerticalAlignment="Center">
+                                <Grid Width="280" Height="100" Name="GameScrollMainGrid">
+                                    <ScrollViewer Width="280" Name="GameScrollScroll">
+                                        <StackPanel Width="280" Name="GameScroll">
+                                        </StackPanel>
+                                    </ScrollViewer>
+                                </Grid>
+                            </ComboBox>
+                        </Grid>
                         <Grid Width="425"
                               Height="50"
                               Margin="10">
@@ -374,16 +385,17 @@
                                      KeyDown="SavePhrases_Click" />
                         </Grid>
                         <Grid Width="425" Height="60" Margin="10">
-                            <Label Content="Список Игр" VerticalAlignment="Center"/>
-                            <ComboBox Name="GameComboBox" Width="300" HorizontalAlignment="Right" Height="30" VerticalAlignment="Center">
-                                <Grid Width="280" Height="100" Name="GameScrollMainGrid">
-                                    <ScrollViewer Width="280" Name="GameScrollScroll">
-                                        <StackPanel Width="280" Name="GameScroll">
+                            <Label Content="Список Фраз" VerticalAlignment="Center"/>
+                            <ComboBox Name="PhrasesComboBox" Width="300" HorizontalAlignment="Right" Height="30" VerticalAlignment="Center">
+                                <Grid Width="280" Height="100" Name="PhrasesScrollMainGrid">
+                                    <ScrollViewer Width="280" Name="PhrasesScrollScroll">
+                                        <StackPanel Width="280" Name="PhrasesScroll">
                                         </StackPanel>
                                     </ScrollViewer>
                                 </Grid>
                             </ComboBox>
                         </Grid>
+                        
                     </WrapPanel>
 
                     <!--<Grid Grid.Column="1"
