@@ -12,7 +12,7 @@
         WindowStyle="SingleBorderWindow"
         Title="Геймерский рандомайзер"
         Height="450"
-        Width="850"
+        Width="950"
         Closed="Window_Closed">
     <Grid Name="MainGrid">
         <TabControl>
@@ -330,9 +330,8 @@
                     <WrapPanel Grid.Row="1"
                                Grid.Column="0"
                                Grid.ColumnSpan="2"
-                               Grid.RowSpan="2"
-                               Margin="0,0,342,0">
-                        <Grid Width="550"
+                               Grid.RowSpan="2">
+                        <Grid Width="425"
                               Height="50"
                               Margin="10">
                             <Label Content="Заголовок"
@@ -341,15 +340,11 @@
                             <TextBox x:Name="SaveTextForHead"
                                      Width="300"
                                      Height="25"
-                                     HorizontalAlignment="Center"
+                                     HorizontalAlignment="Right"
                                      VerticalAlignment="Center"
                                      KeyDown="SaveHead_Click" />
-
-
-
-
                         </Grid>
-                        <Grid Width="550"
+                        <Grid Width="425"
                               Height="50"
                               Margin="10">
                             <Label Content="Добавление игры"
@@ -360,12 +355,12 @@
                                      LostFocus="VinTextBox_LostFocus"
                                      Width="300"
                                      Height="25"
-                                     HorizontalAlignment="Center"
+                                     HorizontalAlignment="Right"
                                      VerticalAlignment="Center"
                                      KeyDown="SaveGame_Click"
-                                     Text="игра {режим1,режим2}" />
+                                     Text="Игра {Режим_1, Режим_2, ...}" Margin="125,0,0,0" />
                         </Grid>
-                        <Grid Width="550"
+                        <Grid Width="425"
                               Height="50"
                               Margin="10">
                             <Label Content="Добавление фраз"
@@ -374,13 +369,24 @@
                             <TextBox x:Name="SaveTextForPhrases"
                                      Width="300"
                                      Height="25"
-                                     HorizontalAlignment="Center"
+                                     HorizontalAlignment="Right"
                                      VerticalAlignment="Center"
                                      KeyDown="SavePhrases_Click" />
                         </Grid>
+                        <Grid Width="425" Height="60" Margin="10">
+                            <Label Content="Список Игр" VerticalAlignment="Center"/>
+                            <ComboBox Name="GameComboBox" Width="300" HorizontalAlignment="Right" Height="30" VerticalAlignment="Center">
+                                <Grid Width="280" Height="100" Name="GameScrollMainGrid">
+                                    <ScrollViewer Width="280" Name="GameScrollScroll">
+                                        <StackPanel Width="280" Name="GameScroll">
+                                        </StackPanel>
+                                    </ScrollViewer>
+                                </Grid>
+                            </ComboBox>
+                        </Grid>
                     </WrapPanel>
-                    
-                    <Grid Grid.Column="1"
+
+                    <!--<Grid Grid.Column="1"
                           Grid.Row="1"
                           Margin="163,2,6,21"
                           Grid.RowSpan="2">
@@ -390,9 +396,9 @@
                                HorizontalAlignment="Center"
                                VerticalAlignment="Top"
                                Margin="0,-5,0,0" />
-                    </Grid>
+                    </Grid>-->
 
-                   
+
 
                 </Grid>
 

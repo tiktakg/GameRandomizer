@@ -120,25 +120,33 @@ namespace GameRandomizer
         }
         public static string GetGameWithMode()
         {
-            string[] AllGames = File.ReadAllLines(Sources.Games());
-            Random rnd = new Random();
-            string RandomedGame = AllGames[rnd.NextInt64(0, AllGames.Length)];
-            Regex regex = new Regex(@"(.*)\{(.*)\}");
-            string GameName = regex
-                .Match(RandomedGame)
-                .Groups[1]
-                .Value
-                .Trim();
-            string[] GameModes = regex
-                .Match(RandomedGame)
-                .Groups[2]
-                .Value
-                .Split(',')
-                .ToList()
-                .Select(x => x.Trim())
-                .ToArray();
-            string GameMode = GameModes[rnd.NextInt64(0, GameModes.Length)];
-            return $"{GameName} : {GameMode}";
+            try 
+            {
+                string[] AllGames = File.ReadAllLines(Sources.Games());
+                Random rnd = new Random();
+                string RandomedGame = AllGames[rnd.NextInt64(0, AllGames.Length)];
+                Regex regex = new Regex(@"(.*)\{(.*)\}");
+                string GameName = regex
+                    .Match(RandomedGame)
+                    .Groups[1]
+                    .Value
+                    .Trim();
+                string[] GameModes = regex
+                    .Match(RandomedGame)
+                    .Groups[2]
+                    .Value
+                    .Split(',')
+                    .ToList()
+                    .Select(x => x.Trim())
+                    .ToArray();
+                string GameMode = GameModes[rnd.NextInt64(0, GameModes.Length)];
+                return $"{GameName} : {GameMode}";
+            } 
+            catch 
+            {
+                return "Файл с играми пуст!";
+            }
+            
         }
         public static SolidColorBrush GetProgressBarFillingColor(string text,string fileSave)
         {
