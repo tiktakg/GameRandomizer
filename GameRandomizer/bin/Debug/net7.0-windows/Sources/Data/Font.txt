@@ -1,0 +1,6 @@
+BrushColor:Teal
+Family:Segoe UI
+Size:14
+Style:Normal
+Stretch:Normal
+Weight:Normal

@@ -83,22 +83,13 @@ namespace GameRandomizer
         {
             string[] games = File.ReadAllLines(Sources.Games());
 
-            GameScroll.Children.Clear();
+            GameComboBox.Items.Clear();
 
             Canvas canvas= new Canvas();
 
             Label[] label = new Label[games.Length];
             Button[] buttons = new Button[games.Length];
             Grid[] grids= new Grid[games.Length];
-
-            if(games.Length > 5) 
-            {
-                GameScrollMainGrid.Height = 200;
-            }
-            else
-            {
-                GameScrollMainGrid.Height = games.Length * 35;
-            }
 
 
             for(int i = 0; i < label.Length;i++) 
@@ -123,8 +114,9 @@ namespace GameRandomizer
 
                 buttons[i].Width = 40;
 
-                
-                GameScroll.Children.Add(grids[i]);
+                GameComboBox.Items.Add(grids[i]);
+
+
 
                 grids[i].Children.Add(buttons[i]);
                 grids[i].Margin = new Thickness(0, 2, 0, 0);
@@ -132,6 +124,8 @@ namespace GameRandomizer
 
                 Canvas.SetZIndex(buttons[i], 1);
                 Canvas.SetZIndex(label[i], -1);
+
+               
             }
             
             
@@ -161,7 +155,7 @@ namespace GameRandomizer
         {
             string[] games = File.ReadAllLines(Sources.Phrases());
 
-            PhrasesScroll.Children.Clear();
+            PhrasesComboBox.Items.Clear();
 
             Canvas canvas = new Canvas();
 
@@ -169,14 +163,7 @@ namespace GameRandomizer
             Button[] buttons = new Button[games.Length];
             Grid[] grids = new Grid[games.Length];
 
-            if (games.Length > 5)
-            {
-                PhrasesScrollMainGrid.Height = 200;
-            }
-            else
-            {
-                PhrasesScrollMainGrid.Height = games.Length * 35;
-            }
+            
 
 
             for (int i = 0; i < label.Length; i++)
@@ -202,7 +189,7 @@ namespace GameRandomizer
                 buttons[i].Width = 40;
 
 
-                PhrasesScroll.Children.Add(grids[i]);
+                PhrasesComboBox.Items.Add(grids[i]);
 
                 grids[i].Children.Add(buttons[i]);
                 grids[i].Margin = new Thickness(0, 2, 0, 0);
