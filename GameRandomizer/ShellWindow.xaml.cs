@@ -239,6 +239,7 @@ namespace GameRandomizer
                 RingProgressBar.Value = 0;
                 SimpleProgressBar.Value = 0;
                 ProgressRing.IsActive = true;
+                Counter = 0;
                 Timer.Interval = new TimeSpan(0, 0, 1);
                 Timer.Start();
             }
