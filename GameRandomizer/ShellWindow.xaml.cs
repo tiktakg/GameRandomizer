@@ -518,5 +518,18 @@ namespace GameRandomizer
             }
         }
 
+        private void SaveTimeProgressbar_Click(object sender, RoutedEventArgs e)
+        {
+            if(Int32.TryParse(TextForSaveTimeProgressbar.Text,out int Time))
+            {
+                Tools.SaveText(TextForSaveTimeProgressbar.Text, "Время:", Sources.ElementTexts());
+
+                LimitInSeconds = Time;
+                FillingStep = 100d / Time;
+
+                TextForSaveTimeProgressbar.Text = "";
+            }
+           
+        }
     }
 }

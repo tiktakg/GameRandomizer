@@ -358,11 +358,22 @@
                                      HorizontalAlignment="Right"
                                      VerticalAlignment="Center"
                                      KeyDown="SaveGame_Click"
-                                     Text="Игра {Режим_1, Режим_2, ...}" Margin="125,0,0,0" />
+                                     Text="Игра {Режим_1, Режим_2, ...}"
+                                     Margin="125,0,0,0" />
                         </Grid>
-                        <Grid Width="425" Height="60" Margin="10">
-                            <ComboBox  Text="Список Игр" Name="GameComboBox" Width="300" HorizontalAlignment="Left" Height="35" VerticalAlignment="Center" IsEditable="True" IsReadOnly="True" MaxDropDownHeight="300">
-                                
+                        <Grid Width="425"
+                              Height="60"
+                              Margin="10">
+                            <ComboBox  Text="Список Игр"
+                                       Name="GameComboBox"
+                                       Width="300"
+                                       HorizontalAlignment="Left"
+                                       Height="35"
+                                       VerticalAlignment="Center"
+                                       IsEditable="True"
+                                       IsReadOnly="True"
+                                       MaxDropDownHeight="300">
+
                             </ComboBox>
                         </Grid>
                         <Grid Width="425"
@@ -378,26 +389,32 @@
                                      VerticalAlignment="Center"
                                      KeyDown="SavePhrases_Click" />
                         </Grid>
-                        <Grid Width="425" Height="60" Margin="10">
-                            <ComboBox Text="Список Фраз"   Name="PhrasesComboBox" Width="300" HorizontalAlignment="Left" Height="35" VerticalAlignment="Center" IsEditable="True" IsReadOnly="True" MaxDropDownHeight="300">
-                           
+                        <Grid Width="425"
+                              Height="60"
+                              Margin="10">
+                            <ComboBox Text="Список Фраз"
+                                      Name="PhrasesComboBox"
+                                      Width="300"
+                                      HorizontalAlignment="Left"
+                                      Height="35"
+                                      VerticalAlignment="Center"
+                                      IsEditable="True"
+                                      IsReadOnly="True"
+                                      MaxDropDownHeight="300">
+
                             </ComboBox>
                         </Grid>
-                        
+
+                        <Grid Width="100"
+                              Height="35"
+                              Margin="10">
+                            <TextBox Width="100"
+                                     x:Name="TextForSaveTimeProgressbar"
+                                     KeyDown="SaveTimeProgressbar_Click" />
+
+
+                        </Grid>
                     </WrapPanel>
-
-                    <!--<Grid Grid.Column="1"
-                          Grid.Row="1"
-                          Margin="163,2,6,21"
-                          Grid.RowSpan="2">
-
-                        <Image x:Name="SettingsLogo"
-                               Source="/settingImg1.png"
-                               HorizontalAlignment="Center"
-                               VerticalAlignment="Top"
-                               Margin="0,-5,0,0" />
-                    </Grid>-->
-
 
 
                 </Grid>

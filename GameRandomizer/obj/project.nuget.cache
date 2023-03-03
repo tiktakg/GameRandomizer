@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "v82cKENvVmfC4BABlIr6+88Mi+C1K6VeJSIDJCQFFbD2vgSKtyM8iQZ3fVCHNDh+MPNwY6sddRpDhmFoishDpA==",
+  "dgSpecHash": "OHlLKs1O2XvFXC/fKlwk17RXStOoNPQtBn0XIep8D2u6gY7z7rEbohB19WjbdISh64RezcJNZZft0sHhEXGHCw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\gupli\\Source\\Repos\\tiktakg\\GameRandomizer\\GameRandomizer\\GameRandomizer.csproj",
+  "projectFilePath": "C:\\Users\\gupli\\source\\repos\\tiktakg\\GameRandomizer\\GameRandomizer\\GameRandomizer.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\gupli\\.nuget\\packages\\extended.wpf.toolkit\\4.5.0\\extended.wpf.toolkit.4.5.0.nupkg.sha512",
     "C:\\Users\\gupli\\.nuget\\packages\\modernwpfui\\0.9.6\\modernwpfui.0.9.6.nupkg.sha512",

@@ -1,5 +1,5 @@
 ﻿GameRandomizer
-
+1.0.0.0
 
 winexe
 C#
@@ -12,9 +12,9 @@ TRACE;DEBUG;NET;NET7_0;NETCOREAPP
 C:\Users\gupli\source\repos\tiktakg\GameRandomizer\GameRandomizer\App.xaml
 21671452273
 
-7-1257386435
+9915342245
 206-1716362009
 LoadingWindow.xaml;ShellWindow.xaml;
 
-False
+True
 
