@@ -10,12 +10,6 @@
 //------------------------------------------------------------------------------
 
 using GameRandomizer;
-using ModernWpf;
-using ModernWpf.Controls;
-using ModernWpf.Controls.Primitives;
-using ModernWpf.DesignTime;
-using ModernWpf.Markup;
-using ModernWpf.Media.Animation;
 using System;
 using System.Diagnostics;
 using System.Windows;
@@ -67,7 +61,7 @@ namespace GameRandomizer {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/GameRandomizer;component/loadingwindow.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/GameRandomizer;V1.0.0.0;component/loadingwindow.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\LoadingWindow.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);
