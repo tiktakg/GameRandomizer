@@ -39,18 +39,20 @@ namespace GameRandomizer
 
         private void SettingComponents()
         {
+            //SetButonFont();
+
             ToggleRolfButton.Checked += (s, e) => MainTabItem.Header = "Random Gay";
             ToggleRolfButton.Unchecked += (s, e) => MainTabItem.Header = "Random Game";
 
             Logo.Source = Tools.PathToImage(Sources.MainLogo());
             LogoSettings.Source = Tools.PathToImage(Sources.MainLogo());
             LogoSettings_2.Source = Tools.PathToImage(Sources.ProgressBarImage());
-            //SettingsLogo.Source = Tools.PathToImage(Sources.MainLogoSettings());
-
+            
             LogoInProgressBar.Source = Tools.PathToImage(Sources.ProgressBarImage());
 
             FontInfo.ApplyFont(MainTabItem, Tools.GetFont());
            
+
             HeadLineText.FontSize += 10d;
             HeadLineText.Text = Tools.GetHeadLineText("Заголовок");
 
@@ -71,9 +73,6 @@ namespace GameRandomizer
 
             RingProgressBar.Foreground = Tools.GetProgressBarFillingColor("ЦветШкалыПрогресса:",Sources.ElementTexts());
             SimpleProgressBar.Foreground = Tools.GetProgressBarFillingColor("ЦветШкалыПрогресса:", Sources.ElementTexts());
-
-            FastRButton.Foreground = Tools.GetProgressBarFillingColor("BrushColor:", Sources.Font());
-            SlowRButton.Foreground = Tools.GetProgressBarFillingColor("BrushColor:", Sources.Font());
 
             InitGameScroll();
             InitPhrasesScroll();
@@ -509,11 +508,10 @@ namespace GameRandomizer
                     file.WriteLine($"Weight:{font.Weight}");
                     file.Close();
 
-                    
 
-                    InitializeComponent();
-                    SettingComponents();
-                    
+                    SetButonFont();
+                    FontInfo.ApplyFont(MainTabItem, Tools.GetFont());
+
                 }
             }
         }
@@ -531,5 +529,25 @@ namespace GameRandomizer
             }
            
         }
+
+        private void SetButonFont()
+        {
+            FontInfo fi = Tools.GetFont();
+
+            SlowRButton.Foreground = Tools.GetProgressBarFillingColor("BrushColor:", Sources.Font());
+            SlowRButton.FontFamily = fi.Family;
+            SlowRButton.FontSize = fi.Size;
+            SlowRButton.FontStyle = fi.Style;
+            SlowRButton.FontStretch = fi.Stretch;
+            SlowRButton.Width = Tools.GetFontSize();
+
+            FastRButton.Foreground = Tools.GetProgressBarFillingColor("BrushColor:", Sources.Font());
+            FastRButton.FontFamily = fi.Family;
+            FastRButton.FontSize = fi.Size;
+            FastRButton.FontStyle = fi.Style;
+            FastRButton.FontStretch = fi.Stretch;
+            FastRButton.Width = Tools.GetFontSize();;
+        }
+
     }
 }

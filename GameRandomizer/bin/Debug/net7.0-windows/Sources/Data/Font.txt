@@ -1,5 +1,5 @@
-BrushColor:Teal
-Family:Segoe UI
+BrushColor:White
+Family:Sitka Display
 Size:14
 Style:Normal
 Stretch:Normal
