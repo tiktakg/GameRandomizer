@@ -19,6 +19,9 @@ using System.IO;
 using ModernWpf.Controls;
 using System.Printing;
 using Microsoft.VisualBasic;
+using ModernWpf;
+using Microsoft.Windows.Themes;
+using Xceed.Wpf.AvalonDock.Themes;
 
 namespace GameRandomizer
 {
@@ -125,8 +128,11 @@ namespace GameRandomizer
                 Canvas.SetZIndex(buttons[i], 1);
                 Canvas.SetZIndex(label[i], -1);
 
+
                
             }
+
+
             
             
         }
@@ -530,6 +536,14 @@ namespace GameRandomizer
                 TextForSaveTimeProgressbar.Text = "";
             }
            
+        }
+
+        private void ChangeThemeButton_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("f");
+
+            
+            
         }
     }
 }

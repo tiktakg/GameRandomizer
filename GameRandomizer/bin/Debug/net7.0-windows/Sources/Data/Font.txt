@@ -1,6 +1,6 @@
-BrushColor:Teal
+BrushColor:White
 Family:Segoe UI
-Size:14
+Size:60
 Style:Normal
 Stretch:Normal
 Weight:Normal

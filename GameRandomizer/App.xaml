@@ -11,6 +11,7 @@
                 <ui:ThemeResources />
                 <ui:XamlControlsResources />
             </ResourceDictionary.MergedDictionaries>
+            <ResourceDictionary x:Key="LightTheme" Source="Dictionary1.xaml"/>
             <Style x:Key="AnimatedSwitch"
                    TargetType="{x:Type ToggleButton}">
                 <Setter Property="Foreground"
