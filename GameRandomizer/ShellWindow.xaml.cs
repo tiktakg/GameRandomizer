@@ -65,8 +65,9 @@ namespace GameRandomizer
             StartRandomButton.Content = Tools.GetHeadLineText("КнопкаНачала");
             ButtonSettings.Text = Tools.GetHeadLineText("КнопкаНачала");
 
-            SlowRButton.Content = Tools.GetHeadLineText("МедленнаяКнопка");
-            FastRButton.Content = Tools.GetHeadLineText("БыстраяКнопка");
+            FastRButtonText.Text = Tools.GetHeadLineText("МедленнаяКнопка");
+            SlowRButtonText.Text = Tools.GetHeadLineText("БыстраяКнопка");
+
             fastMode.Text = Tools.GetHeadLineText("БыстраяКнопка");
             slowMode.Text = Tools.GetHeadLineText("МедленнаяКнопка");
 
@@ -79,6 +80,7 @@ namespace GameRandomizer
 
             InitGameScroll();
             InitPhrasesScroll();
+            SetButonFont();
 
         }
         private void InitGameScroll()
@@ -460,8 +462,8 @@ namespace GameRandomizer
             Tools.SaveText(fastMode.Text, "БыстраяКнопка:", Sources.ElementTexts());
             Tools.SaveText(slowMode.Text, "МедленнаяКнопка:", Sources.ElementTexts());
 
-            FastRButton.Content = fastMode.Text;
-            SlowRButton.Content = slowMode.Text;
+            SlowRButtonText.Text = fastMode.Text;
+            SlowRButtonText.Text = slowMode.Text;
         }
 
         private void ButtonSettings_TextChanged(object sender, KeyEventArgs e)
@@ -518,6 +520,9 @@ namespace GameRandomizer
                     SetButonFont();
                     FontInfo.ApplyFont(MainTabItem, Tools.GetFont());
 
+                    InitializeComponent();
+                    SettingComponents();
+
                 }
             }
         }
@@ -555,5 +560,14 @@ namespace GameRandomizer
             FastRButton.Width = Tools.GetFontSize();;
         }
 
+        private void FastRButton_Checked(object sender, RoutedEventArgs e)
+        {
+            SlowRButton.IsChecked = false;
+        }
+
+        private void SlowRButton_Checked(object sender, RoutedEventArgs e)
+        {
+            FastRButton.IsChecked = false;
+        }
     }
 }

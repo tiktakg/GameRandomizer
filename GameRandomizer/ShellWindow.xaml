@@ -14,9 +14,6 @@
         Height="500"
         Width="950"
         Closed="Window_Closed">
-    <Window.Resources>
-        <ResourceDictionary Source="Dictionary1.xaml"/>
-    </Window.Resources>
     <Grid Name="MainGrid">
         <TabControl>
             <TabControl.Background>
@@ -65,10 +62,9 @@
                         </Grid.ColumnDefinitions>
                         <TextBlock x:Name="HeadLineText"
                                    TextWrapping="Wrap"
-                                   HorizontalAlignment="Left"
                                    VerticalAlignment="Center"
                                    Grid.Column="2"
-                                   Margin="314,0,0,0" />
+                                   HorizontalAlignment="Center" />
                     </Grid>
 
                     <Grid Grid.Row="1"
@@ -102,9 +98,17 @@
                         <StackPanel Margin="20 20 0 0">
                             <TextBlock Text="Режим рандомизации:" TextWrapping="Wrap"/>
                             <StackPanel Margin="0 15 0 0">
-                                <RadioButton x:Name="FastRButton"
-                                             IsChecked="True"></RadioButton>
-                                <RadioButton x:Name="SlowRButton"></RadioButton>
+                                <Grid>
+                                    <RadioButton x:Name="FastRButton"
+                                              Checked="FastRButton_Checked"></RadioButton>
+                                    <TextBlock x:Name="FastRButtonText" Margin="30 0 0 0" TextWrapping="Wrap" />
+                                </Grid>
+                                <Grid>
+                                    <RadioButton x:Name="SlowRButton" Checked="SlowRButton_Checked"></RadioButton>
+                                    <TextBlock x:Name="SlowRButtonText" Margin="30 0 0 0" TextWrapping="Wrap" />
+                                </Grid>
+                                
+                                
                             </StackPanel>
                             <Button HorizontalAlignment="Left"
                                     Margin="0 15 0 0"
@@ -419,7 +423,6 @@
 
 
                         </Grid>
-                        <Button Name="ChangeThemeButton" Content="смена темы" Click="ChangeThemeButton_Click"/>
                     </WrapPanel>
 
 

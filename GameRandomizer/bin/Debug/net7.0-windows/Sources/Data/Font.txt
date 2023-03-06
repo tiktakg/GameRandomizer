@@ -1,6 +1,6 @@
 BrushColor:White
-Family:Sitka Display
-Size:14
+Family:Segoe UI
+Size:22
 Style:Normal
 Stretch:Normal
 Weight:Normal
