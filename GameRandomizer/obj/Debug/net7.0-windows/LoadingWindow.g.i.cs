@@ -10,12 +10,6 @@
 //------------------------------------------------------------------------------
 
 using GameRandomizer;
-using ModernWpf;
-using ModernWpf.Controls;
-using ModernWpf.Controls.Primitives;
-using ModernWpf.DesignTime;
-using ModernWpf.Markup;
-using ModernWpf.Media.Animation;
 using System;
 using System.Diagnostics;
 using System.Windows;
@@ -61,13 +55,13 @@ namespace GameRandomizer {
         /// InitializeComponent
         /// </summary>
         [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [System.CodeDom.Compiler.GeneratedCodeAttribute("PresentationBuildTasks", "7.0.0.0")]
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("PresentationBuildTasks", "7.0.3.0")]
         public void InitializeComponent() {
             if (_contentLoaded) {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/GameRandomizer;component/loadingwindow.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/GameRandomizer;V1.0.0.0;component/loadingwindow.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\LoadingWindow.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);
@@ -77,7 +71,7 @@ namespace GameRandomizer {
         }
         
         [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [System.CodeDom.Compiler.GeneratedCodeAttribute("PresentationBuildTasks", "7.0.0.0")]
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("PresentationBuildTasks", "7.0.3.0")]
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Design", "CA1033:InterfaceMethodsShouldBeCallableByChildTypes")]
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Maintainability", "CA1502:AvoidExcessiveComplexity")]
