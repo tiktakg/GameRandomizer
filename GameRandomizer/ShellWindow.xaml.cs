@@ -43,7 +43,7 @@ namespace GameRandomizer
 
         private void SettingComponents()
         {
-           
+
 
             ToggleRolfButton.Checked += (s, e) => MainTabItem.Header = "Random Gay";
             ToggleRolfButton.Unchecked += (s, e) => MainTabItem.Header = "Random Game";
@@ -51,11 +51,11 @@ namespace GameRandomizer
             Logo.Source = Tools.PathToImage(Sources.MainLogo());
             LogoSettings.Source = Tools.PathToImage(Sources.MainLogo());
             LogoSettings_2.Source = Tools.PathToImage(Sources.ProgressBarImage());
-            
+
             LogoInProgressBar.Source = Tools.PathToImage(Sources.ProgressBarImage());
 
             FontInfo.ApplyFont(MainTabItem, Tools.GetFont());
-           
+
 
             HeadLineText.FontSize += 10d;
             HeadLineText.Text = Tools.GetHeadLineText("Заголовок");
@@ -76,7 +76,7 @@ namespace GameRandomizer
 
             FillingStep = 100d / LimitInSeconds;
 
-            RingProgressBar.Foreground = Tools.GetProgressBarFillingColor("ЦветШкалыПрогресса:",Sources.ElementTexts());
+            RingProgressBar.Foreground = Tools.GetProgressBarFillingColor("ЦветШкалыПрогресса:", Sources.ElementTexts());
             SimpleProgressBar.Foreground = Tools.GetProgressBarFillingColor("ЦветШкалыПрогресса:", Sources.ElementTexts());
 
             InitGameScroll();
@@ -90,14 +90,14 @@ namespace GameRandomizer
 
             GameComboBox.Items.Clear();
 
-            Canvas canvas= new Canvas();
+            Canvas canvas = new Canvas();
 
             Label[] label = new Label[games.Length];
             Button[] buttons = new Button[games.Length];
-            Grid[] grids= new Grid[games.Length];
+            Grid[] grids = new Grid[games.Length];
 
 
-            for(int i = 0; i < label.Length;i++) 
+            for (int i = 0; i < label.Length; i++)
             {
                 grids[i] = new Grid();
                 label[i] = new Label();
@@ -105,17 +105,17 @@ namespace GameRandomizer
             }
 
 
-            for(int i = 0; i < games.Length; i++) 
+            for (int i = 0; i < games.Length; i++)
             {
                 label[i].Content = games[i];
                 buttons[i].Content = "❌";
-                label[i].HorizontalAlignment= HorizontalAlignment.Left;
+                label[i].HorizontalAlignment = HorizontalAlignment.Left;
                 buttons[i].HorizontalAlignment = HorizontalAlignment.Right;
                 buttons[i].Name = $"_{i}";
                 buttons[i].Click += DeleteGame;
 
 
-                buttons[i].Margin = new Thickness(0,0,10,0);
+                buttons[i].Margin = new Thickness(0, 0, 10, 0);
 
                 buttons[i].Width = 40;
 
@@ -131,12 +131,12 @@ namespace GameRandomizer
                 Canvas.SetZIndex(label[i], -1);
 
 
-               
+
             }
 
 
-            
-            
+
+
         }
         private void DeleteGame(object sender, RoutedEventArgs e)
         {
@@ -145,10 +145,10 @@ namespace GameRandomizer
 
             string name = (sender as Button).Name;
 
-            
+
 
             StreamWriter file = new StreamWriter(Sources.Games());
-            for(int i = 0;i < games.Length;i++) 
+            for (int i = 0; i < games.Length; i++)
             {
                 if (i == Convert.ToInt64(name.Replace("_", "")))
                     continue;
@@ -171,7 +171,7 @@ namespace GameRandomizer
             Button[] buttons = new Button[games.Length];
             Grid[] grids = new Grid[games.Length];
 
-            
+
 
 
             for (int i = 0; i < label.Length; i++)
@@ -323,7 +323,7 @@ namespace GameRandomizer
             {
 
             }
-            
+
 
         }
         private void LogoClick1(object? sender, EventArgs e)
@@ -386,11 +386,11 @@ namespace GameRandomizer
 
                 InitPhrasesScroll();
             }
-                
+
         }
         private void SaveGame_Click(object sender, KeyEventArgs e)
         {
-            if(e.Key == Key.Enter) 
+            if (e.Key == Key.Enter)
             {
                 Regex regex = new Regex(@"(.*)\{(.*)\}");
 
@@ -401,7 +401,7 @@ namespace GameRandomizer
                 {
                     if (regex.IsMatch(textForGame))
                     {
-                        File.AppendAllText(Sources.Games(),  textForGame + "\n");
+                        File.AppendAllText(Sources.Games(), textForGame + "\n");
                     }
                 }
 
@@ -442,8 +442,8 @@ namespace GameRandomizer
 
         private void PhrasesTextBox_GotFocus(object sender, RoutedEventArgs e)
         {
-            if (SaveTextForPhrases.Text == "Введите фразу");
-                SaveTextForPhrases.Text = "";
+            if (SaveTextForPhrases.Text == "Введите фразу") ;
+            SaveTextForPhrases.Text = "";
             SaveTextForPhrases.Foreground = new SolidColorBrush(Colors.White);
         }
 
@@ -479,7 +479,7 @@ namespace GameRandomizer
         {
             string[] allText = File.ReadAllLines(Sources.ElementTexts());
 
-            if(ClrPicker.SelectedColor.ToString() != "")
+            if (ClrPicker.SelectedColor.ToString() != "")
             {
                 SimpleProgressBar.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString(ClrPicker.SelectedColor.ToString()));
                 RingProgressBar.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString(ClrPicker.SelectedColor.ToString()));
@@ -505,7 +505,7 @@ namespace GameRandomizer
 
                 FontInfo.ApplyFont(MainTabItem, Tools.GetFont());
             }
-           
+
         }
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -522,9 +522,9 @@ namespace GameRandomizer
             {
                 Tools.SaveText(ButtonSettings.Text, "КнопкаНачала:", Sources.ElementTexts());
                 StartRandomButton.Content = ButtonSettings.Text;
-            }  
+            }
         }
-        
+
         private void LogoSettings_MouseEnter(object sender, MouseEventArgs e)
         {
             LogoSettingsLabel.Content = "Выбрать лого";
@@ -554,7 +554,7 @@ namespace GameRandomizer
                 font = dialog.Font;
                 if (font != null)
                 {
-                    
+
 
                     File.WriteAllText(Sources.Font(), $"");
 
@@ -580,16 +580,20 @@ namespace GameRandomizer
 
         private void SaveTimeProgressbar_Click(object sender, RoutedEventArgs e)
         {
-            if(Int32.TryParse(TextForSaveTimeProgressbar.Text,out int Time))
+            if (TextForSaveTimeProgressbar.Text != "")
             {
-                Tools.SaveText(TextForSaveTimeProgressbar.Text, "Время:", Sources.ElementTexts());
+                string text = TextForSaveTimeProgressbar.Text;
+                if (Int32.TryParse(text,out int Time) == true)
+                {
+                    Tools.SaveText(TextForSaveTimeProgressbar.Text, "Время:", Sources.ElementTexts());
 
-                LimitInSeconds = Time;
-                FillingStep = 100d / Time;
+                    LimitInSeconds = Time;
+                    FillingStep = 100d / Time;
 
-                TextForSaveTimeProgressbar.Text = "";
+                    TextForSaveTimeProgressbar.Text = "";
+                }
             }
-           
+
         }
 
         private void SetButonFont()
@@ -608,7 +612,7 @@ namespace GameRandomizer
             FastRButton.FontSize = fi.Size;
             FastRButton.FontStyle = fi.Style;
             FastRButton.FontStretch = fi.Stretch;
-            FastRButton.Width = Tools.GetFontSize();;
+            FastRButton.Width = Tools.GetFontSize();
         }
 
         private void FastRButton_Checked(object sender, RoutedEventArgs e)
