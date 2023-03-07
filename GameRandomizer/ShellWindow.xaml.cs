@@ -23,6 +23,7 @@ using ModernWpf;
 using Microsoft.Windows.Themes;
 using Xceed.Wpf.AvalonDock.Themes;
 
+
 namespace GameRandomizer
 {
     public partial class ShellWindow : Window
@@ -42,7 +43,7 @@ namespace GameRandomizer
 
         private void SettingComponents()
         {
-            //SetButonFont();
+           
 
             ToggleRolfButton.Checked += (s, e) => MainTabItem.Header = "Random Gay";
             ToggleRolfButton.Unchecked += (s, e) => MainTabItem.Header = "Random Game";
@@ -61,7 +62,7 @@ namespace GameRandomizer
 
             PhrasesTextBlock.FontSize += 5d;
 
-          
+
             StartRandomButton.Content = Tools.GetHeadLineText("КнопкаНачала");
             ButtonSettings.Text = Tools.GetHeadLineText("КнопкаНачала");
 
@@ -546,6 +547,7 @@ namespace GameRandomizer
         {
             dialog = new();
             dialog.Font = FontInfo.GetControlFont(FontButton);
+            dialog.Background = SystemColors.ControlDarkBrush;
             dialog.FontSizes = new int[] { 10, 12, 14, 16, 18, 20, 22 };
             if (dialog.ShowDialog() == true)
             {
