@@ -348,6 +348,9 @@
                                    HorizontalAlignment="Left"
                                    VerticalAlignment="Center" />
                             <TextBox x:Name="SaveTextForHead"
+                                     GotFocus="HeadTextBox_GotFocus"
+                                     LostFocus="HeadTextBox_LostFocus"
+                                     Text="Введите заголовок"
                                      Width="300"
                                      Height="25"
                                      HorizontalAlignment="Right"
@@ -393,6 +396,9 @@
                                    HorizontalAlignment="Left"
                                    VerticalAlignment="Center" />
                             <TextBox x:Name="SaveTextForPhrases"
+                                     GotFocus="PhrasesTextBox_GotFocus"
+                                     LostFocus="PhrasesTextBox_LostFocus"
+                                     Text="Введите фразу"
                                      Width="300"
                                      Height="25"
                                      HorizontalAlignment="Right"
@@ -419,7 +425,10 @@
                               Margin="10">
                             <TextBox Width="100"
                                      x:Name="TextForSaveTimeProgressbar"
-                                     KeyDown="SaveTimeProgressbar_Click" />
+                                     KeyDown="SaveTimeProgressbar_Click"
+                                     GotFocus="BarTextBox_GotFocus"
+                                     LostFocus="BarTextBox_LostFocus"
+                                     Text="Введите время работы progressbar"/>
 
 
                         </Grid>

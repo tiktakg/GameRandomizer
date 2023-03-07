@@ -423,8 +423,57 @@ namespace GameRandomizer
                 SaveTextForGame.Foreground = new SolidColorBrush(Colors.White);
             }
         }
+        private void HeadTextBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (SaveTextForHead.Text == "Введите заголовок")
+                SaveTextForHead.Text = "";
+            SaveTextForHead.Foreground = new SolidColorBrush(Colors.White);
+        }
 
-       
+        private void HeadTextBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(SaveTextForHead.Text))
+            {
+                SaveTextForHead.Text = "Введите заголовок";
+                SaveTextForHead.Foreground = new SolidColorBrush(Colors.White);
+            }
+        }
+
+        private void PhrasesTextBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (SaveTextForPhrases.Text == "Введите фразу");
+                SaveTextForPhrases.Text = "";
+            SaveTextForPhrases.Foreground = new SolidColorBrush(Colors.White);
+        }
+
+        private void PhrasesTextBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(SaveTextForPhrases.Text))
+            {
+                SaveTextForPhrases.Text = "Введите фразу";
+                SaveTextForPhrases.Foreground = new SolidColorBrush(Colors.White);
+            }
+        }
+
+        private void BarTextBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (TextForSaveTimeProgressbar.Text == "Введите время работы progressbar")
+                TextForSaveTimeProgressbar.Text = "";
+            TextForSaveTimeProgressbar.Foreground = new SolidColorBrush(Colors.White);
+        }
+
+        private void BarTextBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(TextForSaveTimeProgressbar.Text))
+            {
+                TextForSaveTimeProgressbar.Text = "Введите время работы progressbar";
+                TextForSaveTimeProgressbar.Foreground = new SolidColorBrush(Colors.White);
+            }
+        }
+
+
+
+
         private void ChangeFontColor_Click(object? sender, EventArgs e)
         {
             string[] allText = File.ReadAllLines(Sources.ElementTexts());

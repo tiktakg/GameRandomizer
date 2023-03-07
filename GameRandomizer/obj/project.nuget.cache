@@ -1,12 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "9gJZu4340fEbMMZyRExk5rNYFDaFOB7fHB1xQdh7GoK8SbBt+0Q+U9czfcI4fpRqBd8n/D8L72IIW2t1rPU7bA==",
+  "dgSpecHash": "OHlLKs1O2XvFXC/fKlwk17RXStOoNPQtBn0XIep8D2u6gY7z7rEbohB19WjbdISh64RezcJNZZft0sHhEXGHCw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Чеснок\\source\\repos\\GameZHOPA\\GameRandomizer\\GameRandomizer.csproj",
+  "projectFilePath": "C:\\Users\\gupli\\source\\repos\\tiktakg\\GameRandomizer\\GameRandomizer\\GameRandomizer.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\Чеснок\\.nuget\\packages\\extended.wpf.toolkit\\4.5.0\\extended.wpf.toolkit.4.5.0.nupkg.sha512",
-    "C:\\Users\\Чеснок\\.nuget\\packages\\modernwpfui\\0.9.6\\modernwpfui.0.9.6.nupkg.sha512",
-    "C:\\Users\\Чеснок\\.nuget\\packages\\wpfcolorfontdialog\\1.0.8\\wpfcolorfontdialog.1.0.8.nupkg.sha512"
+    "C:\\Users\\gupli\\.nuget\\packages\\extended.wpf.toolkit\\4.5.0\\extended.wpf.toolkit.4.5.0.nupkg.sha512",
+    "C:\\Users\\gupli\\.nuget\\packages\\modernwpfui\\0.9.6\\modernwpfui.0.9.6.nupkg.sha512",
+    "C:\\Users\\gupli\\.nuget\\packages\\wpfcolorfontdialog\\1.0.8\\wpfcolorfontdialog.1.0.8.nupkg.sha512"
   ],
   "logs": []
 }
