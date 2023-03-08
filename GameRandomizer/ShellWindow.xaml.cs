@@ -18,6 +18,11 @@ using WpfColorFontDialog;
 using System.IO;
 using ModernWpf.Controls;
 using System.Printing;
+using Microsoft.VisualBasic;
+using ModernWpf;
+using Microsoft.Windows.Themes;
+using Xceed.Wpf.AvalonDock.Themes;
+
 
 namespace GameRandomizer
 {
@@ -38,29 +43,32 @@ namespace GameRandomizer
 
         private void SettingComponents()
         {
+
+
             ToggleRolfButton.Checked += (s, e) => MainTabItem.Header = "Random Gay";
             ToggleRolfButton.Unchecked += (s, e) => MainTabItem.Header = "Random Game";
 
             Logo.Source = Tools.PathToImage(Sources.MainLogo());
             LogoSettings.Source = Tools.PathToImage(Sources.MainLogo());
             LogoSettings_2.Source = Tools.PathToImage(Sources.ProgressBarImage());
-            SettingsLogo.Source = Tools.PathToImage(Sources.MainLogoSettings());
 
             LogoInProgressBar.Source = Tools.PathToImage(Sources.ProgressBarImage());
 
             FontInfo.ApplyFont(MainTabItem, Tools.GetFont());
-           
+
+
             HeadLineText.FontSize += 10d;
             HeadLineText.Text = Tools.GetHeadLineText("Заголовок");
 
             PhrasesTextBlock.FontSize += 5d;
 
-          
+
             StartRandomButton.Content = Tools.GetHeadLineText("КнопкаНачала");
             ButtonSettings.Text = Tools.GetHeadLineText("КнопкаНачала");
 
-            SlowRButton.Content = Tools.GetHeadLineText("МедленнаяКнопка");
-            FastRButton.Content = Tools.GetHeadLineText("БыстраяКнопка");
+            FastRButtonText.Text = Tools.GetHeadLineText("МедленнаяКнопка");
+            SlowRButtonText.Text = Tools.GetHeadLineText("БыстраяКнопка");
+
             fastMode.Text = Tools.GetHeadLineText("БыстраяКнопка");
             slowMode.Text = Tools.GetHeadLineText("МедленнаяКнопка");
 
@@ -68,14 +76,160 @@ namespace GameRandomizer
 
             FillingStep = 100d / LimitInSeconds;
 
-            RingProgressBar.Foreground = Tools.GetProgressBarFillingColor("ЦветШкалыПрогресса:",Sources.ElementTexts());
+            RingProgressBar.Foreground = Tools.GetProgressBarFillingColor("ЦветШкалыПрогресса:", Sources.ElementTexts());
             SimpleProgressBar.Foreground = Tools.GetProgressBarFillingColor("ЦветШкалыПрогресса:", Sources.ElementTexts());
 
-            FastRButton.Foreground = Tools.GetProgressBarFillingColor("BrushColor:", Sources.Font());
-            SlowRButton.Foreground = Tools.GetProgressBarFillingColor("BrushColor:", Sources.Font());
+            InitGameScroll();
+            InitPhrasesScroll();
+            SetButonFont();
+
+        }
+        private void InitGameScroll()
+        {
+            string[] games = File.ReadAllLines(Sources.Games());
+
+            GameComboBox.Items.Clear();
+
+            Canvas canvas = new Canvas();
+
+            Label[] label = new Label[games.Length];
+            Button[] buttons = new Button[games.Length];
+            Grid[] grids = new Grid[games.Length];
+
+
+            for (int i = 0; i < label.Length; i++)
+            {
+                grids[i] = new Grid();
+                label[i] = new Label();
+                buttons[i] = new Button();
+            }
+
+
+            for (int i = 0; i < games.Length; i++)
+            {
+                label[i].Content = games[i];
+                buttons[i].Content = "❌";
+                label[i].HorizontalAlignment = HorizontalAlignment.Left;
+                buttons[i].HorizontalAlignment = HorizontalAlignment.Right;
+                buttons[i].Name = $"_{i}";
+                buttons[i].Click += DeleteGame;
+
+
+                buttons[i].Margin = new Thickness(0, 0, 10, 0);
+
+                buttons[i].Width = 40;
+
+                GameComboBox.Items.Add(grids[i]);
+
+
+
+                grids[i].Children.Add(buttons[i]);
+                grids[i].Margin = new Thickness(0, 2, 0, 0);
+                grids[i].Children.Add(label[i]);
+
+                Canvas.SetZIndex(buttons[i], 1);
+                Canvas.SetZIndex(label[i], -1);
+
+
+
+            }
+
+
+
+
+        }
+        private void DeleteGame(object sender, RoutedEventArgs e)
+        {
+            string[] games = File.ReadAllLines(Sources.Games());
+            File.WriteAllText(Sources.Games(), $"");
+
+            string name = (sender as Button).Name;
+
+
+
+            StreamWriter file = new StreamWriter(Sources.Games());
+            for (int i = 0; i < games.Length; i++)
+            {
+                if (i == Convert.ToInt64(name.Replace("_", "")))
+                    continue;
+                file.WriteLine(games[i]);
+            }
+
+            file.Close();
+            InitGameScroll();
+        }
+
+        private void InitPhrasesScroll()
+        {
+            string[] games = File.ReadAllLines(Sources.Phrases());
+
+            PhrasesComboBox.Items.Clear();
+
+            Canvas canvas = new Canvas();
+
+            Label[] label = new Label[games.Length];
+            Button[] buttons = new Button[games.Length];
+            Grid[] grids = new Grid[games.Length];
+
+
+
+
+            for (int i = 0; i < label.Length; i++)
+            {
+                grids[i] = new Grid();
+                label[i] = new Label();
+                buttons[i] = new Button();
+            }
+
+
+            for (int i = 0; i < games.Length; i++)
+            {
+                label[i].Content = games[i];
+                buttons[i].Content = "❌";
+                label[i].HorizontalAlignment = HorizontalAlignment.Left;
+                buttons[i].HorizontalAlignment = HorizontalAlignment.Right;
+                buttons[i].Name = $"__{i}";
+                buttons[i].Click += DeletePhrase;
+
+
+                buttons[i].Margin = new Thickness(0, 0, 10, 0);
+
+                buttons[i].Width = 40;
+
+
+                PhrasesComboBox.Items.Add(grids[i]);
+
+                grids[i].Children.Add(buttons[i]);
+                grids[i].Margin = new Thickness(0, 2, 0, 0);
+                grids[i].Children.Add(label[i]);
+
+                Canvas.SetZIndex(buttons[i], 1);
+                Canvas.SetZIndex(label[i], -1);
+            }
+
 
         }
 
+        private void DeletePhrase(object sender, RoutedEventArgs e)
+        {
+            string[] games = File.ReadAllLines(Sources.Phrases());
+            File.WriteAllText(Sources.Games(), $"");
+
+            string name = (sender as Button).Name;
+
+
+
+            StreamWriter file = new StreamWriter(Sources.Phrases());
+            for (int i = 0; i < games.Length; i++)
+            {
+                if (i == Convert.ToInt64(name.Replace("__", "")))
+                    continue;
+                file.WriteLine(games[i]);
+            }
+
+            file.Close();
+            InitPhrasesScroll();
+        }
         private void Window_Closed(object sender, EventArgs e)
         {
             App.Current.Shutdown();
@@ -93,6 +247,7 @@ namespace GameRandomizer
                 RingProgressBar.Value = 0;
                 SimpleProgressBar.Value = 0;
                 ProgressRing.IsActive = true;
+                Counter = 0;
                 Timer.Interval = new TimeSpan(0, 0, 1);
                 Timer.Start();
             }
@@ -160,7 +315,15 @@ namespace GameRandomizer
             Random rnd = new Random();
 
             string[] textforPhrases = File.ReadAllLines(Sources.Phrases());
-            PhrasesTextBlock.Text = textforPhrases[rnd.NextInt64(0, textforPhrases.Length)];
+            try
+            {
+                PhrasesTextBlock.Text = textforPhrases[rnd.NextInt64(0, textforPhrases.Length)];
+            }
+            catch
+            {
+
+            }
+
 
         }
         private void LogoClick1(object? sender, EventArgs e)
@@ -217,35 +380,38 @@ namespace GameRandomizer
             {
                 string textForPhrases = SaveTextForPhrases.Text;
                 if (textForPhrases != "")
-                    File.AppendAllText(Sources.Phrases(), "\n" + textForPhrases);
+                    File.AppendAllText(Sources.Phrases(), textForPhrases + "\n");
 
                 SaveTextForPhrases.Text = "";
+
+                InitPhrasesScroll();
             }
-                
+
         }
         private void SaveGame_Click(object sender, KeyEventArgs e)
         {
-            if(e.Key == Key.Enter) 
+            if (e.Key == Key.Enter)
             {
                 Regex regex = new Regex(@"(.*)\{(.*)\}");
 
                 string textForGame = SaveTextForGame.Text;
 
+
                 if (textForGame != "")
                 {
                     if (regex.IsMatch(textForGame))
                     {
-                        File.AppendAllText(Sources.Games(), "\n" + textForGame);
+                        File.AppendAllText(Sources.Games(), textForGame + "\n");
                     }
                 }
 
                 SaveTextForGame.Text = "";
-
+                InitGameScroll();
             }
         }
         private void VinTextBox_GotFocus(object sender, RoutedEventArgs e)
         {
-            if (SaveTextForGame.Text == "игра {режим1,режим2}")
+            if (SaveTextForGame.Text == "Игра {Режим_1, Режим_2, ...}")
                 SaveTextForGame.Text = "";
             SaveTextForGame.Foreground = new SolidColorBrush(Colors.White);
         }
@@ -254,17 +420,62 @@ namespace GameRandomizer
         {
             if (string.IsNullOrWhiteSpace(SaveTextForGame.Text))
             {
-                SaveTextForGame.Text = "игра {режим1,режим2}";
+                SaveTextForGame.Text = "Игра {Режим_1, Режим_2, ...}";
                 SaveTextForGame.Foreground = new SolidColorBrush(Colors.White);
             }
         }
+        private void HeadTextBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (SaveTextForHead.Text == "Введите заголовок")
+                SaveTextForHead.Text = "";
+            SaveTextForHead.Foreground = new SolidColorBrush(Colors.White);
+        }
 
-       
+        private void HeadTextBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(SaveTextForHead.Text))
+            {
+                SaveTextForHead.Text = "Введите заголовок";
+                SaveTextForHead.Foreground = new SolidColorBrush(Colors.White);
+            }
+        }
+
+        private void PhrasesTextBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (SaveTextForPhrases.Text == "Введите фразу") ;
+            SaveTextForPhrases.Text = "";
+            SaveTextForPhrases.Foreground = new SolidColorBrush(Colors.White);
+        }
+
+        private void PhrasesTextBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(SaveTextForPhrases.Text))
+            {
+                SaveTextForPhrases.Text = "Введите фразу";
+                SaveTextForPhrases.Foreground = new SolidColorBrush(Colors.White);
+            }
+        }
+
+        private void BarTextBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (TextForSaveTimeProgressbar.Text == "Введите время работы progressbar")
+                TextForSaveTimeProgressbar.Text = "";
+            TextForSaveTimeProgressbar.Foreground = new SolidColorBrush(Colors.White);
+        }
+
+        private void BarTextBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(TextForSaveTimeProgressbar.Text))
+            {
+                TextForSaveTimeProgressbar.Text = "Введите время работы progressbar";
+                TextForSaveTimeProgressbar.Foreground = new SolidColorBrush(Colors.White);
+            }
+        }
         private void ChangeFontColor_Click(object? sender, EventArgs e)
         {
             string[] allText = File.ReadAllLines(Sources.ElementTexts());
 
-            if(ClrPicker.SelectedColor.ToString() != "")
+            if (ClrPicker.SelectedColor.ToString() != "")
             {
                 SimpleProgressBar.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString(ClrPicker.SelectedColor.ToString()));
                 RingProgressBar.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString(ClrPicker.SelectedColor.ToString()));
@@ -290,15 +501,15 @@ namespace GameRandomizer
 
                 FontInfo.ApplyFont(MainTabItem, Tools.GetFont());
             }
-           
+
         }
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Tools.SaveText(fastMode.Text, "БыстраяКнопка:", Sources.ElementTexts());
             Tools.SaveText(slowMode.Text, "МедленнаяКнопка:", Sources.ElementTexts());
 
-            FastRButton.Content = fastMode.Text;
-            SlowRButton.Content = slowMode.Text;
+            SlowRButtonText.Text = fastMode.Text;
+            SlowRButtonText.Text = slowMode.Text;
         }
 
         private void ButtonSettings_TextChanged(object sender, KeyEventArgs e)
@@ -307,9 +518,9 @@ namespace GameRandomizer
             {
                 Tools.SaveText(ButtonSettings.Text, "КнопкаНачала:", Sources.ElementTexts());
                 StartRandomButton.Content = ButtonSettings.Text;
-            }  
+            }
         }
-        
+
         private void LogoSettings_MouseEnter(object sender, MouseEventArgs e)
         {
             LogoSettingsLabel.Content = "Выбрать лого";
@@ -332,13 +543,14 @@ namespace GameRandomizer
         {
             dialog = new();
             dialog.Font = FontInfo.GetControlFont(FontButton);
+            dialog.Background = SystemColors.ControlDarkBrush;
             dialog.FontSizes = new int[] { 10, 12, 14, 16, 18, 20, 22 };
             if (dialog.ShowDialog() == true)
             {
                 font = dialog.Font;
                 if (font != null)
                 {
-                    FontInfo.ApplyFont(MainTabItem, font);
+
 
                     File.WriteAllText(Sources.Font(), $"");
 
@@ -351,12 +563,63 @@ namespace GameRandomizer
                     file.WriteLine($"Weight:{font.Weight}");
                     file.Close();
 
-                    FastRButton.Foreground = Tools.GetProgressBarFillingColor("BrushColor:", Sources.Font());
-                    SlowRButton.Foreground = Tools.GetProgressBarFillingColor("BrushColor:", Sources.Font());
+
+                    SetButonFont();
+                    FontInfo.ApplyFont(MainTabItem, Tools.GetFont());
+
                     InitializeComponent();
+                    SettingComponents();
+
                 }
             }
         }
 
+        private void SaveTimeProgressbar_Click(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+
+                if (Int32.TryParse(TextForSaveTimeProgressbar.Text, out int Time))
+                {
+                    Tools.SaveText(TextForSaveTimeProgressbar.Text, "Время:", Sources.ElementTexts());
+
+                    LimitInSeconds = Time;
+                    FillingStep = 100d / Time;
+
+                    
+                }
+
+                TextForSaveTimeProgressbar.Text = "";
+            }
+        }
+
+        private void SetButonFont()
+        {
+            FontInfo fi = Tools.GetFont();
+
+            SlowRButton.Foreground = Tools.GetProgressBarFillingColor("BrushColor:", Sources.Font());
+            SlowRButton.FontFamily = fi.Family;
+            SlowRButton.FontSize = fi.Size;
+            SlowRButton.FontStyle = fi.Style;
+            SlowRButton.FontStretch = fi.Stretch;
+            SlowRButton.Width = Tools.GetFontSize();
+
+            FastRButton.Foreground = Tools.GetProgressBarFillingColor("BrushColor:", Sources.Font());
+            FastRButton.FontFamily = fi.Family;
+            FastRButton.FontSize = fi.Size;
+            FastRButton.FontStyle = fi.Style;
+            FastRButton.FontStretch = fi.Stretch;
+            FastRButton.Width = Tools.GetFontSize();
+        }
+
+        private void FastRButton_Checked(object sender, RoutedEventArgs e)
+        {
+            SlowRButton.IsChecked = false;
+        }
+
+        private void SlowRButton_Checked(object sender, RoutedEventArgs e)
+        {
+            FastRButton.IsChecked = false;
+        }
     }
 }
