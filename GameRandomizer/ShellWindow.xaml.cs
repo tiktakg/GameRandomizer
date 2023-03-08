@@ -471,10 +471,6 @@ namespace GameRandomizer
                 TextForSaveTimeProgressbar.Foreground = new SolidColorBrush(Colors.White);
             }
         }
-
-
-
-
         private void ChangeFontColor_Click(object? sender, EventArgs e)
         {
             string[] allText = File.ReadAllLines(Sources.ElementTexts());
@@ -578,22 +574,23 @@ namespace GameRandomizer
             }
         }
 
-        private void SaveTimeProgressbar_Click(object sender, RoutedEventArgs e)
+        private void SaveTimeProgressbar_Click(object sender, KeyEventArgs e)
         {
-            if (TextForSaveTimeProgressbar.Text != "")
+            if (e.Key == Key.Enter)
             {
-                string text = TextForSaveTimeProgressbar.Text;
-                if (Int32.TryParse(text,out int Time) == true)
+
+                if (Int32.TryParse(TextForSaveTimeProgressbar.Text, out int Time))
                 {
                     Tools.SaveText(TextForSaveTimeProgressbar.Text, "Время:", Sources.ElementTexts());
 
                     LimitInSeconds = Time;
                     FillingStep = 100d / Time;
 
-                    TextForSaveTimeProgressbar.Text = "";
+                    
                 }
-            }
 
+                TextForSaveTimeProgressbar.Text = "";
+            }
         }
 
         private void SetButonFont()

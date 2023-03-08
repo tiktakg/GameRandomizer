@@ -287,35 +287,54 @@
                                    HorizontalAlignment="Right"
                                    VerticalAlignment="Center" />
                             <TextBox Name="ButtonSettings"
-                                     Width="127"
-                                     Height="25"
+                                     Width="75"
+                                     Height="35"
                                      HorizontalAlignment="Left"
-                                     KeyDown="ButtonSettings_TextChanged"
-                                     Margin="0,9,0,9" />
+                                     KeyDown="ButtonSettings_TextChanged" />
                         </Grid>
-                        <Grid Width="150"
-                              Height="35"
+                        <Grid Width="425"
+                              Height="50"
+                              Margin="10"
                               ToolTipService.InitialShowDelay="5"
                               ToolTip="Напишите время за которое прогресс бар выполниться">
-                            <TextBox x:Name="TextForSaveTimeProgressbar"
+                            <TextBox Width="350"
+                                     Height="35"
+                                    Name="TextForSaveTimeProgressbar"
                                      KeyDown="SaveTimeProgressbar_Click"
                                      GotFocus="BarTextBox_GotFocus"
                                      LostFocus="BarTextBox_LostFocus"
-                                     Text="Введите время работы progressbar"
-                                     Margin="25,0,-131,0" />
+                                     HorizontalAlignment="Right"
+                                     TextAlignment="Center"
+                                     Text="Введите время работы progressbar" />
 
                         </Grid>
+                        <Grid Width="250"
+                              Height="70"
+                              Margin="10">
+
+                            <Button x:Name="FontButton"
+                                    Content="Выбрать шрифт"
+                                    Click="ChangeFont_Click"
+                                    Width="200"
+                                    ToolTipService.InitialShowDelay="5"
+                                    ToolTip="Нажмите чтобы изменить стилизацию текста в главном меню"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Bottom" />
+                        </Grid>
                         <Grid Width="350"
-                              Height="50"
+                              Height="70"
                               ToolTipService.InitialShowDelay="5"
+                              Margin="10"
+                              HorizontalAlignment="Right"
                               ToolTip="Нажмите чтобы поставить измененый цвет прогресс бара ">
                             <Button Content="Установить цвет прогресс бара"
                                     HorizontalAlignment="Right"
-                                    VerticalAlignment="Center"
+                                    VerticalAlignment="Bottom"
                                     Click="ChangeFontColor_Click" />
                             <xctk:ColorPicker x:Name="ClrPicker"
-                                              VerticalAlignment="Center"
-                                              Width="75"
+                                              VerticalAlignment="Bottom"
+                                              Width="100"
+                                              Height="35"
                                               HorizontalAlignment="Left"
                                               Background="Black"
                                               TabBackground="White"
@@ -333,13 +352,8 @@
                                 </xctk:ColorPicker.DropDownBackground>
                             </xctk:ColorPicker>
                         </Grid>
-                        <Button x:Name="FontButton"
-                                Content="Выбрать шрифт"
-                                Click="ChangeFont_Click"
-                                ToolTipService.InitialShowDelay="5"
-                                ToolTip="Нажмите чтобы изменить стилизацию текста в главном меню"
-                                HorizontalAlignment="Center"
-                                VerticalAlignment="Top" />
+                        
+                       
                     </WrapPanel>
 
                     <WrapPanel Grid.Row="1"
@@ -425,12 +439,11 @@
                               Height="50"
                               Margin="10"
                               ToolTipService.InitialShowDelay="5"
-                              ToolTip="Нажмите чтобы изменить текст режимов"
-                              Grid.ColumnSpan="2"
-                              Grid.Row="1">
+                              ToolTip="Нажмите чтобы изменить текст режимов">
                             <Label Content="Текст режимов"
                                    HorizontalAlignment="Left"
-                                   VerticalAlignment="Bottom" />
+                                   VerticalAlignment="Top"
+                                   Margin="0,25,0,0" />
 
                             <ComboBox Width="300"
                                       VerticalAlignment="Bottom"
@@ -496,6 +509,7 @@
                             <Run Text="TikTak" />
                             <LineBreak />
                             <Run Text="drowninginthissea" />
+                            
                         </TextBlock>
                     </Grid>
                 </Grid>

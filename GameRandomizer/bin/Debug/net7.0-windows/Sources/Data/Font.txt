@@ -1,5 +1,5 @@
-BrushColor:Violet
-Family:Sylfaen
+BrushColor:Yellow
+Family:Segoe UI
 Size:14
 Style:Normal
 Stretch:Normal

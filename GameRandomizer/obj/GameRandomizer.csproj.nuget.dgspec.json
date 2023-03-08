@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\gupli\\Source\\Repos\\tiktakg\\GameRandomizer\\GameRandomizer\\GameRandomizer.csproj": {}
+    "C:\\Users\\gupli\\source\\repos\\tiktakg\\GameRandomizer\\GameRandomizer\\GameRandomizer.csproj": {}
   },
   "projects": {
-    "C:\\Users\\gupli\\Source\\Repos\\tiktakg\\GameRandomizer\\GameRandomizer\\GameRandomizer.csproj": {
+    "C:\\Users\\gupli\\source\\repos\\tiktakg\\GameRandomizer\\GameRandomizer\\GameRandomizer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\gupli\\Source\\Repos\\tiktakg\\GameRandomizer\\GameRandomizer\\GameRandomizer.csproj",
+        "projectUniqueName": "C:\\Users\\gupli\\source\\repos\\tiktakg\\GameRandomizer\\GameRandomizer\\GameRandomizer.csproj",
         "projectName": "GameRandomizer",
-        "projectPath": "C:\\Users\\gupli\\Source\\Repos\\tiktakg\\GameRandomizer\\GameRandomizer\\GameRandomizer.csproj",
+        "projectPath": "C:\\Users\\gupli\\source\\repos\\tiktakg\\GameRandomizer\\GameRandomizer\\GameRandomizer.csproj",
         "packagesPath": "C:\\Users\\gupli\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\gupli\\Source\\Repos\\tiktakg\\GameRandomizer\\GameRandomizer\\obj\\",
+        "outputPath": "C:\\Users\\gupli\\source\\repos\\tiktakg\\GameRandomizer\\GameRandomizer\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\gupli\\AppData\\Roaming\\NuGet\\NuGet.Config",
