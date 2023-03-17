@@ -1,6 +1,6 @@
-BrushColor:Yellow
+BrushColor:White
 Family:Segoe UI
-Size:14
+Size:22
 Style:Normal
 Stretch:Normal
 Weight:Normal

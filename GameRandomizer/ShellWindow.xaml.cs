@@ -82,7 +82,6 @@ namespace GameRandomizer
             InitGameScroll();
             InitPhrasesScroll();
             SetButonFont();
-
         }
         private void InitGameScroll()
         {
@@ -126,6 +125,8 @@ namespace GameRandomizer
                 grids[i].Children.Add(buttons[i]);
                 grids[i].Margin = new Thickness(0, 2, 0, 0);
                 grids[i].Children.Add(label[i]);
+                grids[i].Name = $"GameScrollGrid_{i}";
+
 
                 Canvas.SetZIndex(buttons[i], 1);
                 Canvas.SetZIndex(label[i], -1);
@@ -138,6 +139,9 @@ namespace GameRandomizer
 
 
         }
+
+        
+
         private void DeleteGame(object sender, RoutedEventArgs e)
         {
             string[] games = File.ReadAllLines(Sources.Games());
@@ -335,7 +339,7 @@ namespace GameRandomizer
 
             bool? result = dialog.ShowDialog();
 
-            if (result == true)
+            if (result == true && dialog.FileName != Directory.GetCurrentDirectory() + @"\Sources\Images\MainLogo.png")
             {
                 File.Delete(Directory.GetCurrentDirectory() + @"\Sources\Images\MainLogo.png");
                 File.Copy(dialog.FileName, Directory.GetCurrentDirectory() + @"\Sources\Images\MainLogo.png");
@@ -352,7 +356,7 @@ namespace GameRandomizer
 
             bool? result = dialog.ShowDialog();
 
-            if (result == true)
+            if (result == true && dialog.FileName != Directory.GetCurrentDirectory() + @"\Sources\Images\ProgressBarImage.png")
             {
                 File.Delete(Directory.GetCurrentDirectory() + @"\Sources\Images\ProgressBarImage.png");
                 File.Copy(dialog.FileName, Directory.GetCurrentDirectory() + @"\Sources\Images\ProgressBarImage.png");
@@ -620,6 +624,12 @@ namespace GameRandomizer
         private void SlowRButton_Checked(object sender, RoutedEventArgs e)
         {
             FastRButton.IsChecked = false;
+        }
+
+        private void GameComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            GameComboBox.SelectedIndex = -1;
+            PhrasesComboBox.SelectedIndex = -1;
         }
     }
 }

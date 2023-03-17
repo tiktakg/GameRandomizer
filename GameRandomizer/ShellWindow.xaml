@@ -254,7 +254,7 @@
                                Name="LogoSettings_2"
                                Width="150"
                                Height="150"
-                               HorizontalAlignment="Left"
+                               HorizontalAlignment="Right"
                                VerticalAlignment="Top"
                                Margin="10,10,0,0"></Image>
                         <Button Grid.Column="0"
@@ -282,7 +282,8 @@
                               Height="50"
                               Margin="10"
                               ToolTipService.InitialShowDelay="5"
-                              ToolTip="Нажмите чтобы изменить текст кнопки начала">
+                              ToolTip="Впишите сюда текст кнопки начала.">
+                            
                             <Label Content="Кнопка начала"
                                    HorizontalAlignment="Right"
                                    VerticalAlignment="Center" />
@@ -290,14 +291,15 @@
                                      Width="75"
                                      Height="35"
                                      HorizontalAlignment="Left"
+                                     
                                      KeyDown="ButtonSettings_TextChanged" />
                         </Grid>
-                        <Grid Width="425"
+                        <Grid 
                               Height="50"
                               Margin="10"
                               ToolTipService.InitialShowDelay="5"
-                              ToolTip="Напишите время за которое прогресс бар выполниться">
-                            <TextBox Width="350"
+                              ToolTip="Впишите время, за которое прогресс бар выполниться.">
+                            <TextBox 
                                      Height="35"
                                     Name="TextForSaveTimeProgressbar"
                                      KeyDown="SaveTimeProgressbar_Click"
@@ -305,34 +307,32 @@
                                      LostFocus="BarTextBox_LostFocus"
                                      HorizontalAlignment="Right"
                                      TextAlignment="Center"
-                                     Text="Введите время работы progressbar" />
+                                     Text="Время работы progressbar" />
 
                         </Grid>
-                        <Grid Width="250"
-                              Height="70"
+                        <Grid Height="30"
                               Margin="10">
-
                             <Button x:Name="FontButton"
                                     Content="Выбрать шрифт"
                                     Click="ChangeFont_Click"
-                                    Width="200"
                                     ToolTipService.InitialShowDelay="5"
-                                    ToolTip="Нажмите чтобы изменить стилизацию текста в главном меню"
+                                    ToolTip="Нажмите, чтобы изменить стилизацию текста в главном меню."
                                     HorizontalAlignment="Left"
                                     VerticalAlignment="Bottom" />
                         </Grid>
                         <Grid Width="350"
-                              Height="70"
+                              Height="40"
                               ToolTipService.InitialShowDelay="5"
                               Margin="10"
                               HorizontalAlignment="Right"
-                              ToolTip="Нажмите чтобы поставить измененый цвет прогресс бара ">
+                              ToolTip="Нажмите, чтобы поставить изменённый цвет прогресс бара.">
                             <Button Content="Установить цвет прогресс бара"
+                                    
                                     HorizontalAlignment="Right"
-                                    VerticalAlignment="Bottom"
+                                    VerticalAlignment="Center"
                                     Click="ChangeFontColor_Click" />
                             <xctk:ColorPicker x:Name="ClrPicker"
-                                              VerticalAlignment="Bottom"
+                                              VerticalAlignment="Center"
                                               Width="100"
                                               Height="35"
                                               HorizontalAlignment="Left"
@@ -365,7 +365,7 @@
                               Height="50"
                               Margin="10"
                               ToolTipService.InitialShowDelay="5"
-                              ToolTip="Напишите фразу которая будет включаться при запуске медленного прогес бара ">
+                              ToolTip="Напишите фразу, которая будет включаться при запуске медленного прогесc бара.">
                             <Label Content="Добавление игры"
                                    HorizontalAlignment="Left"
                                    VerticalAlignment="Center" />
@@ -386,8 +386,14 @@
                               Height="50"
                               Margin="10"
                               ToolTipService.InitialShowDelay="5"
-                              ToolTip="Нажмите просмотреть или изменить список и">
-                            <ComboBox  Text="Список Игр"
+                              ToolTip="Нажмите, чтобы просмотреть или изменить список игр.">
+                            <TextBlock Text="Список Игр" 
+                                       Foreground="White" 
+                                       Panel.ZIndex="1" 
+                                       VerticalAlignment="Center" 
+                                       HorizontalAlignment="Left"
+                                       Margin="45 0 0 0"/>
+                            <ComboBox  Text=""
                                        x:Name="GameComboBox"
                                        Width="350"
                                        HorizontalAlignment="Center"
@@ -395,13 +401,16 @@
                                        VerticalAlignment="Center"
                                        IsEditable="True"
                                        IsReadOnly="True"
-                                       MaxDropDownHeight="300" />
+                                       MaxDropDownHeight="300" 
+                                       SelectedItem="0"
+                                       SelectionChanged="GameComboBox_SelectionChanged"
+                                       />
                         </Grid>
                         <Grid Width="425"
                               Height="50"
                               Margin="10"
                               ToolTipService.InitialShowDelay="5"
-                              ToolTip="Напишите фразу которая будет включаться при запуске медленного прогес бара ">
+                              ToolTip="Напишите фразу, которая будет включаться при запуске медленного прогесс бара.">
                             <Label Content="Добавление фраз"
                                    HorizontalAlignment="Left"
                                    VerticalAlignment="Center" />
@@ -419,8 +428,15 @@
                               Height="50"
                               Margin="10"
                               ToolTipService.InitialShowDelay="5"
-                              ToolTip="Нажмите просмотреть или изменить список фраз">
-                            <ComboBox Text="Список Фраз"
+                              ToolTip="Нажмите, чтобы просмотреть или изменить список фраз.">
+                            <TextBlock Text="Список Фраз" 
+                                       Foreground="White" Panel.ZIndex="1" 
+                                       VerticalAlignment="Center" 
+                                       HorizontalAlignment="Left"
+                                       Margin="45 0 0 0"
+                                       Width="100"/>
+                                       
+                            <ComboBox Text=""
                                       x:Name="PhrasesComboBox"
                                       Width="350"
                                       HorizontalAlignment="Center"
@@ -428,6 +444,7 @@
                                       VerticalAlignment="Center"
                                       IsEditable="True"
                                       IsReadOnly="True"
+                                      SelectionChanged="GameComboBox_SelectionChanged"
                                       MaxDropDownHeight="300" />
                         </Grid>
                     </WrapPanel>
@@ -439,21 +456,22 @@
                               Height="50"
                               Margin="10"
                               ToolTipService.InitialShowDelay="5"
-                              ToolTip="Нажмите чтобы изменить текст режимов">
+                              ToolTip="Нажмите, чтобы изменить текст режимов.">
                             <Label Content="Текст режимов"
                                    HorizontalAlignment="Left"
-                                   VerticalAlignment="Top"
-                                   Margin="0,25,0,0" />
+                                   VerticalAlignment="Center" />
 
                             <ComboBox Width="300"
-                                      VerticalAlignment="Bottom"
-                                      HorizontalAlignment="Right"
-                                      SelectionChanged="ComboBox_SelectionChanged">
+                                      VerticalAlignment="Center"
+                                      HorizontalAlignment="Right">
+
                                 <TextBox x:Name="fastMode"
                                          Text="Быстро"
                                          Width="300"
                                          Height="25"
+                                         
                                          HorizontalAlignment="Left" />
+
                                 <TextBox x:Name="slowMode"
                                          Text="С загрузкой"
                                          Width="300"
@@ -465,7 +483,7 @@
                               Height="50"
                               Margin="10"
                               ToolTipService.InitialShowDelay="5"
-                              ToolTip="Напишите заголовок для главного меню">
+                              ToolTip="Напишите заголовок для главного меню.">
                             <TextBox x:Name="SaveTextForHead"
                                      GotFocus="HeadTextBox_GotFocus"
                                      LostFocus="HeadTextBox_LostFocus"
@@ -473,7 +491,7 @@
                                      Width="350"
                                      Height="35"
                                      HorizontalAlignment="Center"
-                                     VerticalAlignment="Bottom"
+                                     VerticalAlignment="Center"
                                      KeyDown="SaveHead_Click" />
 
                         </Grid>
